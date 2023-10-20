@@ -12,16 +12,18 @@ body{
 .portada{
     width: 100vw;
     height: 15vh;
-    text-align: center;
     font-family: 'Dancing Script', cursive;
-    color: #1f1f1f;
-    background-image: url(../img/Kirito_Asuna.png);
-    display: inline-block;
+    background-image: url(../img/portada.jpg);
     background-size: 100vw 100vh;
-    background-position-y: -12vh;
+    background-position: center center;
     position: relative;
 }
-
+.port-text{
+    text-align: center;
+    color: #fff;
+    height: 15vh;
+    padding: 4vh;
+}
 .container-menu{
     position: absolute;
     width: 100%;

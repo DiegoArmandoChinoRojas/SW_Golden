@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="portada">
-        <h1>Bienvenidos a SW-GOLDEN</h1>
+        <div class="port-text"><h1>Bienvenidos a SW-GOLDEN</h1></div>
     </div>
    <div class="container-menu">
     <div class="cont-menu">

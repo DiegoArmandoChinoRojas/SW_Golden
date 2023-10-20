@@ -18,6 +18,8 @@ if(!empty($_POST["btnRegistrar"])){
        }
        }
 if(!empty($_POST["btnBuscar"])){
-    echo "<p>Esta es la opcion de buscar</p>";
+    if(empty($_POST["txtid_pro"])){
+        
+    }
 }
 ?>
