@@ -1,0 +1,80 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+*::after, *::before{
+    box-sizing: inherit;
+}
+
+body{
+    background-image: url(../img/fondo.jpeg);
+    background-size: 100vw 100vh; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.texto{
+    text-align: center;
+}
+.contenedor{
+    background-color: rgb(147, 132, 193);
+    margin: 0 auto;
+    border: 2px solid #fff;
+    border-radius:20px;
+    max-width: 500px;
+}
+.imagen{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: 2px solid #fff;
+    background-color: teal;
+    background-image: url(../img/logo.png);
+    background-position: center 140px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 0 0 calc(40%);
+}
+.contenedor-formulario{
+    display: flex;
+}
+.formulario{
+    padding: 10px;
+}
+.texto, label{
+    font-size: 20px;
+}
+.texto{
+    font-family: 'Playfair Display', serif;
+    color: rgb(58, 8, 104);
+}
+label{
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.entrada{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+}
+p{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+    background-color: red;
+}
+input{
+    display: block;
+    margin: 10px 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 80%;
+    padding: 10px 10px;
+}
