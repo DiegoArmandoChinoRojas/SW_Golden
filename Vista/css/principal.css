@@ -34,13 +34,22 @@ body{
 }
 .cont-menu{
     width: 100%;
-    max-width: 15vw;
+    max-width: 250px;
     background: #1c1c1c;
     height: 100vh;
     transition: all 500ms ease;
 }
+.imagen{
+    background-image: url(../img/emp.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    width: 250px;
+    height: 15vh;
+    position: absolute;
+}
 .cont-menu nav{
-    transform: translateY(15%);
+    transform: translateY(15vh);
 }
 .cont-menu nav a{
     font-family: 'Dancing Script', cursive;
@@ -56,10 +65,6 @@ body{
     border-left: 5px solid #c7c7c7;
     background: #1f1f1f;
 }
-
-
-
-
 
 
 

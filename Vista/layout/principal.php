@@ -12,6 +12,7 @@
     </div>
    <div class="container-menu">
     <div class="cont-menu">
+    <div class="imagen">
         <nav class="menu">
             <a href="../php/información.php">Información</a>
             <a href="../php/cliente.php">Cliente</a>
@@ -20,6 +21,7 @@
             <a href="../php/registro_venta.php">Registro Venta</a>
             <a href="../../index.php">Logout</a>
         </nav>
+        </div>
     </div>
    </div>
 </body>

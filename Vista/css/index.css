@@ -21,7 +21,8 @@ body{
     text-align: center;
 }
 .contenedor{
-    background-color: rgb(147, 132, 193);
+    background-image: url(../img/two.gif);
+    background-size: 100% 100%;
     margin: 0 auto;
     border: 2px solid #fff;
     border-radius:20px;
@@ -31,8 +32,7 @@ body{
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border-right: 2px solid #fff;
-    background-color: teal;
-    background-image: url(../img/logo.png);
+    background-image: url(../img/log.png);
     background-position: center 140px;
     background-size: contain;
     background-repeat: no-repeat;
@@ -49,7 +49,7 @@ body{
 }
 .texto{
     font-family: 'Playfair Display', serif;
-    color: rgb(58, 8, 104);
+    color: #fff;
 }
 label{
     color: #fff;
@@ -68,7 +68,7 @@ p{
     font-size: 30px;
     font-family: 'Dancing Script', cursive;
     color: #fff;
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.479);
 }
 input{
     display: block;
@@ -77,4 +77,12 @@ input{
     border-radius: 20px;
     width: 80%;
     padding: 10px 10px;
+    outline:none;
+    border: none;
+}
+.submit #btn{
+    background: rgba(0, 255, 251, 0.538);
+    color: black;
+    font: bold 15px arial,sans-serif;
+    text-shadow: none;
 }

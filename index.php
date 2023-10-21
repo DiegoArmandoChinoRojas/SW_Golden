@@ -25,7 +25,7 @@
             <input type="password" name="txtpassword" placeholder="Ingrese su contraseña">
             </div>
             <div class="submit">
-            <input type="submit" name="btnIngresar" value="INGRESAR">
+            <input type="submit" id="btn"name="btnIngresar" value="INGRESAR">
             </div>
             <?php
                 include("Config/conexion_bd.php");
