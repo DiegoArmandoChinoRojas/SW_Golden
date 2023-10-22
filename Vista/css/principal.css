@@ -5,9 +5,10 @@
 }
 body{
     background-image: url(../img/fondo.jpeg);
-    background-size: 100vw 85vh;
+    background-size: 85vw 85vh;
     background-repeat: no-repeat;
     background-position-y: 15vh;
+    background-position-x: 35vh;
 }
 .portada{
     width: 100vw;
@@ -21,8 +22,9 @@ body{
 .port-text{
     text-align: center;
     color: #fff;
-    height: 15vh;
+    display: block;
     padding: 4vh;
+    margin-left: 250px;
 }
 .container-menu{
     position: absolute;
@@ -55,7 +57,7 @@ body{
     font-family: 'Dancing Script', cursive;
     display: block;
     text-decoration: none;
-    padding: 20px;
+    padding: 25px;
     color: #c7c7c7;
     border-left: 5px solid transparent;
     transition: all 400ms ease;

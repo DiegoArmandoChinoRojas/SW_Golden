@@ -1,0 +1,19 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.contenedor_formulario{
+    background-color: #fff;
+    display:block;
+
+    width: 50vw;
+    height: 50vh;
+    margin-left: 250px;
+    padding: 20px;
+    border: 5px solid blue;
+}
+p{
+    color: rgb(47, 0, 255);
+    font-size: 20px;
+}

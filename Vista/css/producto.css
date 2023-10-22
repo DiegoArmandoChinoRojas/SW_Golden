@@ -48,7 +48,7 @@ tr, td{
 
 }
 p{
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.589);
     text-align: center;
     color: #fff;
 }

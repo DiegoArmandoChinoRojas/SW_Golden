@@ -63,13 +63,9 @@
         <?php
                 include("../../Config/conexion_bd.php");
                 include("../../Config/controller.php");
-                include("../../Config/producto_controller.php")
+                include("../../Config/producto_controller.php");
                 ?>
     </form>
 </div>
 </body>
 </html>
-
-
-
-
