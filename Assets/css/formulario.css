@@ -1,0 +1,50 @@
+*{
+    box-sizing: content-box;
+}
+.formulario{
+    border: 1px solid red;
+    width: 50vw;
+    height: 50vh;
+    margin: auto;
+   
+}
+.contenido{
+    background-color: #fff;
+    margin-left: 250px;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid black;
+    display: inline-block;
+}
+#input{
+    color: black;
+    padding: 5px;
+    width: 40vw;
+}
+.boton{
+    text-align: center;
+    padding: 5px 5px;
+}
+label{
+    display: inline-flex;
+    width: 90px;
+}
+.botones{
+    background-color: black;
+}
+.tabla{
+    border-collapse: collapse;
+    margin: auto;
+    width: auto;
+    height: auto;
+}
+tr, td{
+    border: 1px solid black;
+}
+p{
+    background-color: rgba(255, 0, 0, 0.589);
+    text-align: center;
+    color: #fff;
+}
+
+

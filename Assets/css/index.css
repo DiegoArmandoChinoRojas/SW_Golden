@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::after, *::before{
+    box-sizing: inherit;
+}
+
+body{
+    /* background-image: url(../img/fondo.jpeg); */
+    background-size: 100vw 100vh; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.texto{
+    text-align: center;
+}
+
+.contenedor{
+    background-image: url(../img/two.gif);
+    background-size: 100% 100%;
+    border: 2px solid #fff;
+    border-radius:50px;
+    max-width: 500px;
+}
+.imagen{
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-right: 2px solid #fff;
+    background-image: url(../img/log.png);
+    background-position: center 140px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 0 0 calc(40%);
+}
+.contenedor-formulario{
+    display: flex;
+}
+.formulario{
+    padding: 10px;
+}
+.texto, label{
+    font-size: 20px;
+}
+.texto{
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+}
+label{
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.entrada{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Dancing Script', cursive;
+    color: #fff;
+}
+input , #btn{
+    display: block;
+    margin: 10px 20px;
+    font-weight: bold;
+    border-radius: 20px;
+    width: 80%;
+    padding: 10px 10px;
+    outline:none;
+    border: none;
+}
+#btn{
+    background: rgba(0, 255, 251, 0.538);
+    color: black;
+    font: bold 15px arial,sans-serif;
+    text-shadow: none;
+}
+
+
