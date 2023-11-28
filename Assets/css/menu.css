@@ -3,32 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    background-image: url(../img/fondo.jpeg);
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
 
-}
-.portada{
-    font-family: 'Dancing Script', cursive;
-    background-image: url(../img/portada.jpg);
-    background-size: 100vw 100vh;
-    width: 85vw;
-    height: 15vh;
-    left: 15vw;
-    background-position: center center;
-    position: relative;
-}
-.encabezado{
-    color: #fff;
-    display: inline-block;
-    position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 25%;
-    bottom: 25%;
-    text-align: center;
-}
 .flotante{
     border: 3px solid #fff;
     border-radius: 50%;
@@ -69,19 +44,19 @@ body{
     display: block;
     text-decoration: none;
     padding: 25px;
-    color: #c7c7c7;
+    color: #fff;
     border-left: 5px solid transparent;
     transition: all 400ms ease;
 }
 .cont-menu nav a:hover{
-    color: #fff;
-    border-left: 5px solid #c7c7c7;
+    color: #00ffff;
+    border-left: 5px solid #00ffff;
     background: #1f1f1f;
 }
 .submit{
     padding-top: 20px;
     padding-left: 235px;
 }
-
-
-
+i{
+    margin: 10px;
+}

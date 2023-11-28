@@ -5,9 +5,19 @@ class UsuarioModel extends Query{
         parent::__construct();
     }
     public function getUsuario(string $usuario, string $clave){
-        $sql= "select * from usuario where Nom_usu='$usuario' and Ape_usu='$clave'";
+        $sql= "SELECT * FROM vista_login WHERE Usuario='$usuario' and Contraseña='$clave'";
         $data= $this->select($sql);
         return $data;   
+    }
+    public function getUsuarios(){
+        $sql= "SELECT * FROM usuario";
+        $datos= $this->selectAll($sql);
+        return $datos; 
+    }
+    public function AgregarUsuario($dni,$nombre,$apellido,$correo,$telefono,$dirección){
+        $sql= "INSERT INTO `usuario`(`Dni_usu`, `Nom_Usu`, `Ape_Usu`, `Correo`, `Telefono`, `Dirección`) VALUES ('$dni','$nombre','$apellido','$correo','$telefono','$dirección')";
+        $data= $this->select($sql);
+        return $data; 
     }
 }
 ?>

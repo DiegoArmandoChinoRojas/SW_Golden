@@ -9,7 +9,7 @@
 }
 
 body{
-    /* background-image: url(../img/fondo.jpeg); */
+    background-image: url(../img/fondo.jpeg);
     background-size: 100vw 100vh; 
     background-repeat: no-repeat;
     background-position: center center;

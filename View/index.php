@@ -17,7 +17,7 @@
         </div>
         <form class="formulario" id="frmLogin">
             <div class="texto">
-                <h1>LOGIN SISTEMA DE VENTA</h1>
+                <h1>Acceso al sistema</h1>
             </div>
             <div id="input">
                 <label for="usuario">Usuario</label>
@@ -25,7 +25,7 @@
             </div>
             <div id="input">
                 <label for="clave">Contraseña</label>
-                <input type="text" id="clave" name="clave" placeholder="Ingrese su contraseña">
+                <input type="password" id="clave" name="clave" placeholder="Ingrese su contraseña">
             </div>
             <div id="alerta" style="margin-top: 20px; text-align:center;background-color: rgba(255, 0, 0, 0.479);font-size: 25px; font-family: 'Dancing Script', cursive;color: #fff;"></div>
             <div class="submit">
