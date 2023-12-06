@@ -19,6 +19,6 @@
 <script src="<?php echo base_url; ?>JS/funciones.js"></script>
 <script src="<?php echo base_url; ?>JS/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="<?php echo base_url; ?>JS/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="<?php echo base_url; ?>JS/sweetalert2.all.min.js"></script>"></script>
+<script src="<?php echo base_url; ?>JS/sweetalert2.all.min.js"></script>">
 </body>
 </html>

@@ -12,14 +12,14 @@ class Usuario extends Controller
         $this->view->mostrarView($this, "index",$data);
     }
     public function listar(){
-        $datos= $this->model->getUsuarios();
-        for($i=0; $i<count($datos);$i++){
-            $datos[$i]['accion']=  '<div>
-            <button class="btn btn-primary mb-3" type="button">EDITAR</button>
-            <button class="btn btn-danger mb-3" type="button">ELIMINAR</button>
+        $data= $this->model->getUsuarios();
+        for($i=0; $i<count($data);$i++){
+            $data[$i]['acciones']= '<div>
+            <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');">EDITAR</button>
+            <button class="btn btn-danger mb-2" type="button">ELIMINAR</button>
             <div/>';
         }
-        echo json_encode($datos, JSON_UNESCAPED_UNICODE);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
@@ -60,11 +60,18 @@ class Usuario extends Controller
             $data= $this->model->registrarUsuario($dni, $nombre, $apellido, $correo, $telefono, $clave,$tipo);
             if($data == "ok"){
                 $msg = "si";
+            }else if ($data == "existe"){
+                $msg = "El usuario ya esta registrado";
             }else{
                 $msg = "Error al registrar el usuario";
             }
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function editar(int $id){
+        $data=$this->model->editarUsuario($id);
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 }
