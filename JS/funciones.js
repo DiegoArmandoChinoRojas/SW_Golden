@@ -88,7 +88,26 @@ function registrarUsuario(e) {
     http.send(new FormData(frm));
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.responseText);
+            const res= JSON.parse(this.responseText)
+            if(res== "si"){
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Usuario registrado exitosamente!!",
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+                  frm.reset();
+                  $("#nuevo_usuario").modal("hide")
+            }else{
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: res,
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
+            }
         }
     }
 }

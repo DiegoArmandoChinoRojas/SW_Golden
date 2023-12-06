@@ -59,7 +59,7 @@ class Usuario extends Controller
         }else{
             $data= $this->model->registrarUsuario($dni, $nombre, $apellido, $correo, $telefono, $clave,$tipo);
             if($data == "ok"){
-                $msg = "Usuario registrado exitosamente!!";
+                $msg = "si";
             }else{
                 $msg = "Error al registrar el usuario";
             }
