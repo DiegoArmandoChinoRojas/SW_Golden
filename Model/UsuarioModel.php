@@ -1,14 +1,15 @@
 <?php
 class UsuarioModel extends Query
 {
-    private $dni,$nombre,$apellido,$correo,$telefono,$tipo;
+    private $nombre,$apellido,$correo,$clave,$dni,$telefono,$tipo;
+
     public function __construct()
     {
         parent::__construct();
     }
     public function getUsuario(string $usuario, string $clave)
     {
-        $sql = "SELECT * FROM vista_login WHERE Correo='$usuario' and Pass_emp='$clave'";
+        $sql = "SELECT * FROM vista_login WHERE Correo='$usuario' and Contraseña='$clave'";
         $data = $this->select($sql);
         return $data;
     }
@@ -20,19 +21,20 @@ class UsuarioModel extends Query
     }
     public function getTipo()
     {
-        $sql = "SELECT * FROM tipo_usuario where Id_tipo_usu=1 or Id_tipo_usu=2";
+        $sql = "SELECT * FROM tipo_usuario";
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function registrarUsuario(int $dni, string $nombre, string $apellido, string $correo, int $telefono, string $tipo){
+    public function registrarUsuario(int $dni, string $nombre, string $apellido, string $correo, int $telefono, string $clave , int $tipo){
         $this->dni =  $dni;
         $this->nombre =  $nombre;
         $this->apellido =  $apellido;
         $this->correo =  $correo;
         $this->telefono =  $telefono;
+        $this->clave = $clave;
         $this->tipo =  $tipo;
-        $sql= "INSERT INTO usuario(Dni_usu,Nom_usu,Ape_usu,Correo,Telefono,Id_tipo_usu) VALUES (?,?,?,?,?,?)";
-        $datos= array($this->dni,$this->nombre,$this->apellido,$this->correo,$this->telefono,$this->tipo);
+        $sql= "INSERT INTO usuario(Dni_usu, Nom_usu, Ape_usu, Correo, Telefono, Contraseña, Id_tipo_usu) VALUES (?,?,?,?,?,?,?)";
+        $datos= array($this->dni,$this->nombre,$this->apellido,$this->correo,$this->telefono,$this->clave,$this->tipo);
         $data=$this->save($sql, $datos);
         if($data==1){
             $res= "ok";
@@ -41,4 +43,6 @@ class UsuarioModel extends Query
         }
         return $res;
     }
+
 }
+?>

@@ -32,8 +32,8 @@ class Usuario extends Controller
             $clave = $_POST["clave"];
             $data = $this->model->getUsuario($usuario, $clave);
             if ($data) {
-                $_SESSION['Usuario'] = $data['Correo'];
-                $_SESSION['Contraseña'] = $data['Pass_emp'];
+                $_SESSION['Correo'] = $data['Correo'];
+                $_SESSION['Contraseña'] = $data['Contraseña'];
                 $msg = "Ok";
             }else{
                 $msg = "Usuario o contraseña incorrecta";
@@ -43,6 +43,28 @@ class Usuario extends Controller
         die();
     }
     public function registrar(){
-        print_r($_POST);
+        $dni = $_POST["dni"];
+        $nombre = $_POST["nombre"];
+        $apellido = $_POST["apellido"];
+        $correo = $_POST["correo"];
+        $telefono = $_POST["telefono"];
+        $clave = $_POST["contraseña"];
+        $confirmar = $_POST["confirmar"];
+        $tipo = $_POST["tipo"];
+
+        if(empty($dni) || empty($nombre) || empty($apellido) || empty($correo) || empty($telefono) || empty($clave) || empty($tipo)){
+            $msg = "Todos los campos son obligatorios";
+        }else if ($clave != $confirmar){
+            $msg = "Las contraseñas no coinciden";
+        }else{
+            $data= $this->model->registrarUsuario($dni, $nombre, $apellido, $correo, $telefono, $clave,$tipo);
+            if($data == "ok"){
+                $msg = "Usuario registrado exitosamente!!";
+            }else{
+                $msg = "Error al registrar el usuario";
+            }
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
     }
 }

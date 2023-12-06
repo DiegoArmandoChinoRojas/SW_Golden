@@ -30,7 +30,7 @@ class Query extends Conexion{
         if($data){
             $res= 1;
         }else{
-            $res= 2;
+            $res= 0;
         }
         return $res;
 }

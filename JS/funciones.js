@@ -52,9 +52,10 @@ function frmLogin(e) {
 function frmUsuario(){
 $("#nuevo_usuario").modal("show");
 }
+
 function registrarUsuario(e) {
     e.preventDefault();
-    const dni= document.getElementById("dni");
+    const dni= parseInt(document.getElementById("dni"));
     const nombre= document.getElementById("nombre");
     const apellido= document.getElementById("apellido");
     const correo= document.getElementById("correo");
@@ -78,7 +79,8 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
           })
-    }else{
+    }
+    else{
     const url = base_url + "Usuario/registrar";
     const frm = document.getElementById("frmUsuario");
     const http = new XMLHttpRequest();

@@ -40,39 +40,47 @@
                     <form method="post" id="frmUsuario">
                         <div class="form-group">
                             <label for="dni">DNI</label>
-                            <input id="dni" class="form-control" type="text" name="dni">
+                            <input id="dni" class="form-control" type="text" name="dni" placeholder="dni">
                         </div>
-                        <div class="form-group">
-                            <label for="nombre">Nombre</label>
-                            <input id="nombre" class="form-control" type="text" name="nombre">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input id="nombre" class="form-control" type="text" name="nombre"  placeholder="nombre">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input id="apellido" class="form-control" type="text" name="apellido"  placeholder="apellido">
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="apellido">Apellido</label>
-                            <input id="apellido" class="form-control" type="text" name="apellido">
-                        </div>
-                        <div class="form-group">
-                            <label for="correo">Correo</label>
-                            <input id="correo" class="form-control" type="text" name="correo">
-                        </div>
-                        <div class="form-group">
-                            <label for="telefono">Telefono</label>
-                            <input id="telefono" class="form-control" type="text" name="telefono">
-                        </div>
-                        <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <input id="direccion" class="form-control" type="text" name="direccion">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="correo">Correo</label>
+                                    <input id="correo" class="form-control" type="text" name="correo"  placeholder="correo">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="telefono">Teléfono</label>
+                                    <input id="telefono" class="form-control" type="text" name="telefono"  placeholder="teléfono">
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="contraseña">Contraseña</label>
-                                    <input id="contraseña" class="form-control" type="password" name="contraseña">
+                                    <input id="contraseña" class="form-control" type="password" name="contraseña"  placeholder="password">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="confirmar">Confirmar Contraseña</label>
-                                    <input id="confirmar" class="form-control" type="password" name="confirmar">
+                                    <input id="confirmar" class="form-control" type="password" name="confirmar"  placeholder="password">
                                 </div>
                             </div>
                         </div>
@@ -90,23 +98,21 @@
             </div>
         </div>
     </div>
-
-<script>
-    const base_url = "<?php echo base_url; ?>";
-</script>
-<script src="<?php echo base_url; ?>JS/funciones.js"></script>
-<script src="<?php echo base_url; ?>JS/jszip.min.js"></script>
-<script src="<?php echo base_url; ?>JS/pdfmake.min.js"></script>
-<script src="<?php echo base_url; ?>JS/vfs_fonts.js"></script>
-<script src="<?php echo base_url; ?>JS/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url; ?>JS/dataTables.bootstrap5.min.js"></script>
-<script src="<?php echo base_url; ?>JS/dataTables.buttons.min.js"></script>
-<script src="<?php echo base_url; ?>JS/buttons.bootstrap5.min.js"></script>
-<script src="<?php echo base_url; ?>JS/buttons.colVis.min.js"></script>
-<script src="<?php echo base_url; ?>JS/buttons.html5.min.js"></script>
-<script src="<?php echo base_url; ?>JS/buttons.print.min.js"></script>
-<script src="<?php echo base_url; ?>JS/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script src="<?php echo base_url; ?>JSON/es-ES.json"></script>
-
+    <script>
+        const base_url = "<?php echo base_url; ?>";
+    </script>
+    <script src="<?php echo base_url; ?>JS/funciones.js"></script>
+    <script src="<?php echo base_url; ?>JS/jszip.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/pdfmake.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/vfs_fonts.js"></script>
+    <script src="<?php echo base_url; ?>JS/jquery.dataTables.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/dataTables.bootstrap5.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/buttons.bootstrap5.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/buttons.colVis.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/buttons.print.min.js"></script>
+    <script src="<?php echo base_url; ?>JS/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="<?php echo base_url; ?>JSON/es-ES.json"></script>
 
 </body>
