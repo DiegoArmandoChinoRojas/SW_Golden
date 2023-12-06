@@ -1,6 +1,6 @@
 <?php
 class Query extends Conexion{
-    private $pdo, $con, $sql;
+    private $pdo, $con, $sql, $datos;
     public function __construct(){
         $this->pdo=new Conexion();
         $this->con=$this->pdo->conect();
@@ -21,5 +21,18 @@ class Query extends Conexion{
         $datos=$resul->fetchAll(PDO::FETCH_ASSOC);
         return $datos;
     }
+    public function save(string $sql, array $datos)
+    {
+        $this->sql=$sql;
+        $this->datos=$datos;
+        $insert =$this->con->prepare($this->sql);
+        $data=$insert->execute($this->datos);
+        if($data){
+            $res= 1;
+        }else{
+            $res= 2;
+        }
+        return $res;
+}
 }
 ?>

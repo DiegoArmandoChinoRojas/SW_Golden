@@ -1,0 +1,38 @@
+*{
+    box-sizing: border-box;
+}
+    .modelo{
+        width: 83vw;
+        position: absolute;
+        left: 17vw;
+    }
+    .contenedor{
+        width: 70vw;
+        margin: auto;
+    }
+    .tb {
+        top: 5px;
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+
+    }
+    .contenido {
+        color: rgb(0, 8, 255);
+    }
+    th {
+        padding: 10px;
+        text-align: center;
+    }
+    tr {
+        background-color: #00ffff;
+
+    }
+
+    .modal-header{
+        background-color: aquamarine;
+    }
+    .title{
+        margin: auto;
+    }
+    

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,8 +7,8 @@
     <link rel="stylesheet" href="<?php echo base_url; ?>Assets/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+    <link rel="icon" href="<?php echo base_url; ?>Assets/img/icon/icon.png"">
 </head>
-
 <body>
     <div class="contenedor-formulario contenedor">
         <div class="imagen">
@@ -38,5 +37,4 @@
         const base_url = "<?php echo base_url; ?>";
     </script>
 </body>
-
 </html>

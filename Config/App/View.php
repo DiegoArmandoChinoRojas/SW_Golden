@@ -1,7 +1,7 @@
 <?php
 class View
 {
-    public function mostrarView($controlador, $vista)
+    public function mostrarView($controlador, $vista, $data="")
     {
         $controlador= get_class($controlador);
         if($controlador=="Home"){
