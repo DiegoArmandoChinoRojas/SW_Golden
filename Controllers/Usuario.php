@@ -15,16 +15,22 @@ class Usuario extends Controller
     public function listar(){
         $data= $this->model->getUsuarios();
         for($i=0; $i<count($data);$i++){
+            if($data[$i]["Estado"] == 1){
+                $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
+            }else{
+                $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
+            }
             $data[$i]['acciones']= '<div>
             <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');">EDITAR</button>
-            <button class="btn btn-danger mb-2" type="button">ELIMINAR</button>
+            <button class="btn btn-danger mb-2" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');">ELIMINAR</button>
+            <button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_usu'].');">ACTIVAR</button>
             <div/>';
         }
-        header('Content-Type: application/json');
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
 
+    // Validación de datos LOGIN
     public function validar()
     {
         if (empty($_POST["usuario"]) and empty($_POST["clave"])) {
@@ -92,5 +98,29 @@ class Usuario extends Controller
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
+    public function eliminar(int $id){
+        $data= $this->model->eli_act_Usuario(0,$id);
+        if($data == 1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al eliminar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
+    public function activar(int $id){
+        $data= $this->model->eli_act_Usuario(1,$id);
+        if($data == 1){
+            $msg = "ok";
+        }else{
+            $msg = "Error al activar el usuario";
+        }
+        echo json_encode($msg, JSON_UNESCAPED_UNICODE);
+        die();
+    }
 }
+
+
+
+
 

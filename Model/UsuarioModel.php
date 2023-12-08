@@ -1,7 +1,7 @@
 <?php
 class UsuarioModel extends Query
 {
-    private $nombre, $apellido, $correo, $clave, $dni, $telefono, $tipo, $id;
+    private $nombre, $apellido, $correo, $clave, $dni, $telefono, $tipo,$estado, $id;
 
     public function __construct()
     {
@@ -75,6 +75,14 @@ class UsuarioModel extends Query
     {
         $sql = "SELECT * FROM usuario WHERE Id_usu=$id";
         $data = $this->select($sql);
+        return $data;
+    }
+    public function eli_act_Usuario(int $estado,int $id){
+        $this->id=$id;
+        $this->estado=$estado;
+        $sql= "UPDATE usuario SET Estado= ? WHERE Id_usu= ?";
+        $datos= array($this->estado, $this->id);
+        $data=$this->save($sql,$datos);
         return $data;
     }
 }

@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
             'data': "Desc_tipo_usu"
         },
         {
+            'data': "Estado"
+        },
+        {
             'data': "acciones"
         }],
     });
@@ -55,7 +58,7 @@ function frmUsuario() {
     document.getElementById("claves").classList.remove("d-none");
     document.getElementById("frmUsuario").reset();
     $("#nuevo_usuario").modal("show");
-    document.getElementById("id").value= "";
+    document.getElementById("id").value = "";
 }
 function registrarUsuario(e) {
     e.preventDefault();
@@ -63,7 +66,7 @@ function registrarUsuario(e) {
     const nombre = document.getElementById("nombre");
     const apellido = document.getElementById("apellido");
     const correo = document.getElementById("correo");
-    const telefono = document.getElementById("telefono"); 
+    const telefono = document.getElementById("telefono");
     const tipo = document.getElementById("tipo");
     if (dni.value == "" || nombre.value == "" || apellido.value == "" || correo.value == "" || telefono.value == "" || tipo.value == "") {
         Swal.fire({
@@ -93,7 +96,7 @@ function registrarUsuario(e) {
                     frm.reset();
                     $("#nuevo_usuario").modal("hide");
                     tblUsuario.ajax.reload();
-                } else if (res == "modificado"){
+                } else if (res == "modificado") {
                     Swal.fire({
                         position: "top-end",
                         icon: "success",
@@ -103,7 +106,7 @@ function registrarUsuario(e) {
                     })
                     $("#nuevo_usuario").modal("hide");
                     tblUsuario.ajax.reload();
-                }else{
+                } else {
                     Swal.fire({
                         position: "top-end",
                         icon: "error",
@@ -111,11 +114,11 @@ function registrarUsuario(e) {
                         showConfirmButton: false,
                         timer: 3000
                     })
-                }    
+                }
+            }
+
         }
-    
     }
-}
 }
 function btnEditarUsuario(Id_usu) {
     document.getElementById("title").innerHTML = "ACTUALIZAR USUARIO";
@@ -126,19 +129,93 @@ function btnEditarUsuario(Id_usu) {
     http.send();
     http.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            const res= JSON.parse(this.responseText);
+            const res = JSON.parse(this.responseText);
             // id de la fila selecionado index
-            document.getElementById("id").value= res.Id_usu;
+            document.getElementById("id").value = res.Id_usu;
             //datos de los campos
-            document.getElementById("dni").value= res.Dni_usu;
-            document.getElementById("nombre").value= res.Nom_usu;
-            document.getElementById("apellido").value= res.Ape_usu;
-            document.getElementById("correo").value= res.Correo;
-            document.getElementById("telefono").value= res.Telefono;
-            document.getElementById("tipo").value= res.Id_tipo_usu;
+            document.getElementById("dni").value = res.Dni_usu;
+            document.getElementById("nombre").value = res.Nom_usu;
+            document.getElementById("apellido").value = res.Ape_usu;
+            document.getElementById("correo").value = res.Correo;
+            document.getElementById("telefono").value = res.Telefono;
+            document.getElementById("tipo").value = res.Id_tipo_usu;
             document.getElementById("claves").classList.add("d-none");
             $("#nuevo_usuario").modal("show");
         }
     }
 }
-
+function btnEliminarUsuario(Id_usu) {
+    Swal.fire({
+        title: "¿Eliminar campo?",
+        text: "El usuario pasara a estar inactivo",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Usuario/eliminar/" + Id_usu;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res=JSON.parse($this.responseText);
+                    if(res== "ok"){
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "Usuario eliminado con exito",
+                            icon: "success"
+                        });
+                        tblUsuario.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+    }
+  });
+}  
+function btnActivarUsuario(Id_usu) {
+    Swal.fire({
+        title: "¿Activar usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Usuario/activar/" + Id_usu;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res=JSON.parse($this.responseText);
+                    if(res== "ok"){
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "La activación se realizo con exito¡¡",
+                            icon: "success"
+                        });
+                        tblUsuario.ajax.reload();
+                    }else{
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+    }
+  });
+}  

@@ -9,12 +9,13 @@
                     <tr>
                         <th>Id</th>
                         <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
                         <th>Correo</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
                         <th>Tipo</th>
-                        <th></th>
+                        <th>Estado</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
             </table>
