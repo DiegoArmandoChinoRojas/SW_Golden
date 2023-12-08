@@ -1,7 +1,6 @@
 <?php include "View/layout/principal.php"; ?>
 
 <body>
-    <br>
     <div class="modelo">
         <div class="contenedor">
             <table class="tb" id="tblUsuario">
@@ -32,6 +31,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmUsuario">
+                    <input type="hidden" id="id" name="id">
                         <div class="form-group">
                             <label for="dni">DNI</label>
                             <input id="dni" class="form-control" type="text" name="dni" placeholder="dni">
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row" id="claves">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="contraseña">Contraseña</label>
