@@ -32,7 +32,7 @@
             </div>
         </form>
     </div>
-    <script src="<?php echo base_url; ?>JS/funciones.js"></script>
+    <script src="<?php echo base_url; ?>JS/login.js"></script>
     <script>
         const base_url = "<?php echo base_url; ?>";
     </script>

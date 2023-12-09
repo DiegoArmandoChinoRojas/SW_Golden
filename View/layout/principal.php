@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <link href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.4.2/css/buttons.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link href="https://cdn.datatables.net/v/dt/dt-1.13.8/b-2.4.2/datatables.min.css" rel="stylesheet">
     <title>SISTEMA GOLDEN</title>
@@ -20,7 +21,7 @@
             <nav class="menu">
                 <a href="<?php echo base_url ?>Usuario"><i class="bi bi-people-fill"></i>Usuarios</a>
                 <a href="<?php echo base_url ?>Cliente"><i class="bi bi-person-fill"></i>Gestión Cliente</a>
-                <a href=""><i class="bi bi-hexagon-half"></i>Categoria Producto</a>
+                <a href="<?php echo base_url ?>Categoria"><i class="bi bi-hexagon-half"></i>Categoria Producto</a>
                 <a href=""><i class="bi bi-cup-hot-fill"></i>Gestión Producto</a>
                 <a href=""><i class="bi bi-person-standing"></i></i>Proveedor</a>
                 <a href=""><i class="bi bi-bag-fill"></i>Nueva Venta</a>

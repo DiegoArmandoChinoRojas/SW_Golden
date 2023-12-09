@@ -4,13 +4,13 @@ class Usuario extends Controller
     public function __construct()
     {
         session_start();
-        if(empty($_SESSION['activo'])){
-            header("location: ".base_url);
-        }
         parent::__construct();
     }
     public function index()
     {
+        if(empty($_SESSION['activo'])){
+            header("location: ".base_url);
+        }
         $data['tipo']=$this->model->getTipo();
         $this->view->mostrarView($this, "index",$data);
     }

@@ -36,11 +36,12 @@
 }
 
 .botones {
+    background-color: rgba(0, 97, 104, 0.461);
     display: flex;
     justify-content: center;
 }
 .btn{
+    
     margin: 10px;
-    margin-top: 0;
-    margin-bottom: 0;
+
 }

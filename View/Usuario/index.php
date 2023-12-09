@@ -93,6 +93,7 @@
         </div>
     </div>
     <script src="<?php echo base_url; ?>JS/funciones.js"></script>
+    
     <script src="<?php echo base_url; ?>JS/jszip.min.js"></script>
     <script src="<?php echo base_url; ?>JS/pdfmake.min.js"></script>
     <script src="<?php echo base_url; ?>JS/vfs_fonts.js"></script>

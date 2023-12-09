@@ -1,4 +1,4 @@
-let tblUsuario, tblCliente;
+let tblUsuario, tblCliente, tblCategoria;
 
 // Tabla de Usuarios
 document.addEventListener("DOMContentLoaded", function () {
@@ -73,26 +73,28 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
-
-// Funciones Usuario
-function frmLogin(e) {
-    e.preventDefault();
-    const url = base_url + "Usuario/validar";
-    const frm = document.getElementById("frmLogin");
-    const http = new XMLHttpRequest();
-    http.open("POST", url, true);
-    http.send(new FormData(frm));
-    http.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            const res = JSON.parse(this.responseText);
-            if (res == "valido") {
-                window.location = base_url + "Usuario";
-            } else {
-                document.getElementById("alerta").innerHTML = res;
-            }
-        }
-    }
-}
+// Tabla de Categorias
+document.addEventListener("DOMContentLoaded", function () {
+    tblCategoria = $('#tblCategoria').DataTable({
+        ajax: {
+            url: base_url + "Categoria/listar",
+            dataSrc: ''
+        },
+        columns: [{
+            'data': "Id_categoria"
+        },
+        {
+            'data': "Nom_cate"
+        },
+        {
+            'data': "Estado"
+        },
+        {
+            'data': "acciones"
+        }],
+    });
+})
+// Funciones Usuarios
 function frmUsuario() {
     document.getElementById("title").innerHTML = "NUEVO USUARIO";
     document.getElementById("btnAccion").innerHTML = "REGISTRAR";
@@ -109,31 +111,61 @@ function registrarUsuario(e) {
     const correo = document.getElementById("correo");
     const telefono = document.getElementById("telefono");
     const tipo = document.getElementById("tipo");
+
+    // Datos paramtro 2 textos
+    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
+    // Datos parametro por dominio
+    var rc = /^[A-Za-z0-9._%-]+@(gmail|hotmail)\.com$/;
+
     if (dni.value == "" || nombre.value == "" || apellido.value == "" || correo.value == "" || telefono.value == "" || tipo.value == "") {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "Todos los campos son obligatorios!!",
             showConfirmButton: false,
             timer: 3000
         })
-    }if(isNaN(telefono.value)){
+    } else if (isNaN(telefono.value)) {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "Teléfono ingresado no es correcto",
             showConfirmButton: false,
             timer: 3000
         })
-    }if (isNaN(dni.value)) {
+    } else if (isNaN(dni.value)) {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "DNI ingresado no es correcto",
             showConfirmButton: false,
             timer: 3000
         })
-    } else {
+    }  else if (!regex.test(apellido.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Apellido invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!regex.test(nombre.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Nombre invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!rc.test(correo.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Correo invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }else {
         const url = base_url + "Usuario/registrar";
         const frm = document.getElementById("frmUsuario");
         const http = new XMLHttpRequest();
@@ -144,7 +176,7 @@ function registrarUsuario(e) {
                 const res = JSON.parse(this.responseText);
                 if (res == "registro") {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "success",
                         title: "Usuario registrado exitosamente!!",
                         showConfirmButton: false,
@@ -155,9 +187,9 @@ function registrarUsuario(e) {
                     tblUsuario.ajax.reload();
                 } else if (res == "modificado") {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "success",
-                        title: "Usuario modificado exitosamente!!",
+                        title: "Usuario actualizado exitosamente!!",
                         showConfirmButton: false,
                         timer: 3000
                     })
@@ -165,7 +197,7 @@ function registrarUsuario(e) {
                     tblUsuario.ajax.reload();
                 } else {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "error",
                         title: res,
                         showConfirmButton: false,
@@ -277,7 +309,7 @@ function btnActivarUsuario(Id_usu) {
     });
 }
 
-// Funciones Cliente
+// Funciones Clientes
 function frmCliente() {
     document.getElementById("title").innerHTML = "NUEVO CLIENTE";
     document.getElementById("btnAccion").innerHTML = "REGISTRAR";
@@ -293,31 +325,61 @@ function registrarCliente(e) {
     const correo = document.getElementById("correo");
     const telefono = document.getElementById("telefono");
     const direccion = document.getElementById("direccion");
+
+    // Datos parametro de textos
+    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
+    // Datos parametro por dominio
+    var rc = /^[A-Za-z0-9._%-]+@(gmail|hotmail)\.com$/;
+
     if (ruc.value == "" || nombre.value == "" || apellido.value == "" || correo.value == "" || telefono.value == "" || direccion.value == "") {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "Todos los campos son obligatorios!!",
             showConfirmButton: false,
             timer: 3000
         })
-    }if(isNaN(telefono.value)){
+    } else if (isNaN(telefono.value)) {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "Teléfono ingresado no es correcto",
             showConfirmButton: false,
             timer: 3000
         })
-    }if (isNaN(ruc.value)) {
+    } else if (isNaN(ruc.value)) {
         Swal.fire({
-            position: "top-end",
+            position: "top",
             icon: "error",
             title: "RUC ingresado no es correcto",
             showConfirmButton: false,
             timer: 3000
         })
-    }else {
+    } else if (!regex.test(apellido.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Apellido invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!regex.test(nombre.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Nombre invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!rc.test(correo.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Correo invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else {
         const url = base_url + "Cliente/registrar";
         const frm = document.getElementById("frmCliente");
         const http = new XMLHttpRequest();
@@ -328,7 +390,7 @@ function registrarCliente(e) {
                 const res = JSON.parse(this.responseText);
                 if (res == "registro") {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "success",
                         title: "Cliente registrado exitosamente!!",
                         showConfirmButton: false,
@@ -339,9 +401,9 @@ function registrarCliente(e) {
                     tblCliente.ajax.reload();
                 } else if (res == "modificado") {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "success",
-                        title: "Cliente modificado exitosamente!!",
+                        title: "Cliente actualizado exitosamente!!",
                         showConfirmButton: false,
                         timer: 3000
                     })
@@ -349,7 +411,7 @@ function registrarCliente(e) {
                     tblCliente.ajax.reload();
                 } else {
                     Swal.fire({
-                        position: "top-end",
+                        position: "top",
                         icon: "error",
                         title: res,
                         showConfirmButton: false,
@@ -446,7 +508,183 @@ function btnActivarCliente(Id_cliente) {
                             text: "La activación se realizo con exito¡¡",
                             icon: "success"
                         });
-                        tblUsuario.ajax.reload();
+                        tblCliente.ajax.reload();
+                    } else {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+        }
+    });
+}
+
+// Funciones Categoria
+function frmCategoria() {
+    document.getElementById("title").innerHTML = "NUEVA CATEGORÍA";
+    document.getElementById("btnAccion").innerHTML = "REGISTRAR";
+    document.getElementById("frmCategoria").reset();
+    $("#nueva_categoria").modal("show");
+    document.getElementById("id").value = "";
+}
+function registrarCategoria(e) {
+    e.preventDefault();
+    const descripcion = document.getElementById("descripcion");
+    // Datos parametro de textos
+    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
+
+    if (descripcion.value == "") {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "El campo es obligatorio!!",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!isNaN(descripcion.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Descripción invalida",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!regex.test(descripcion.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Descripción invalida",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }else {
+        const url = base_url + "Categoria/registrar";
+        const frm = document.getElementById("frmCategoria");
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                if (res == "registro") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Categoría registrado exitosamente!!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    frm.reset();
+                    $("#nueva_categoria").modal("hide");
+                    tblCategoria.ajax.reload();
+                } else if (res == "modificado") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Categoria actualizada exitosamente!!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    $("#nueva_categoria").modal("hide");
+                    tblCategoria.ajax.reload();
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: res,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
+            }
+
+        }
+    }
+}
+function btnEditarCategoria(Id_categoria) {
+    document.getElementById("title").innerHTML = "ACTUALIZAR CATEGORÍA";
+    document.getElementById("btnAccion").innerHTML = "MODIFICAR";
+    const url = base_url + "Categoria/editar/" + Id_categoria;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            // id de la fila selecionado index
+            document.getElementById("id").value = res.Id_categoria;
+            //datos de los campos
+            document.getElementById("descripcion").value = res.Nom_cate;
+            $("#nueva_categoria").modal("show");
+        }
+    }
+}
+function btnEliminarCategoria(Id_categoria) {
+    Swal.fire({
+        title: "¿Eliminar campo?",
+        text: "La Categoria pasara a estar inactivo",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Categoria/eliminar/" + Id_categoria;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse($this.responseText);
+                    if (res == "ok") {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "Categoria eliminado con exito",
+                            icon: "success"
+                        });
+                        tblCategoria.ajax.reload();
+                    } else {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+        }
+    });
+}
+function btnActivarCategoria(Id_categoria) {
+    Swal.fire({
+        title: "¿Activar categoria?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Categoria/activar/" + Id_categoria;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse($this.responseText);
+                    if (res == "ok") {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "La activación se realizo con exito¡¡",
+                            icon: "success"
+                        });
+                        tblCategoria.ajax.reload();
                     } else {
                         Swal.fire({
                             title: "Mensaje",
