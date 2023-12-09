@@ -20,14 +20,17 @@ class Usuario extends Controller
         for($i=0; $i<count($data);$i++){
             if($data[$i]["Estado"] == 1){
                 $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
-            }else{
-                $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
-            }
-            $data[$i]['acciones']= '<div class="btn-group">
+                $data[$i]['acciones']= '<div class="btn-group">
             <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-pencil-square"></i></button>
             <button class="btn btn-danger mb-2" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-trash3-fill"></i></button>
+            
+            </div>';
+            }else{
+                $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
+                $data[$i]['acciones']= '<div class="btn-group">
             <button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-person-arms-up"></i></button>
             </div>';
+            }
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();

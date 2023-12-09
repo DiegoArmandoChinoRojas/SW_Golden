@@ -17,14 +17,19 @@ class Cliente extends Controller
     public function listar(){
         $data= $this->model->getClientes();
         for($i=0; $i<count($data);$i++){
-            $data[$i]['acciones']= '
+            if($data[$i]["Estado"] == 1){
+                $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
+                $data[$i]['acciones']= '
             <div class="btn-group">
-            <button class="btn btn-primary mb-1 btn-sm" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_cliente'].');"><i class="bi bi-pencil-square"></i></button>
-
-            <button class="btn btn-danger mb-1 btn-sm" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_cliente'].');"><i class="bi bi-trash3-fill"></i></button>
-
-            <button class="btn btn-success mb-1 btn-sm" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_cliente'].');"><i class="bi bi-person-arms-up"></i></button>
+            <button class="btn btn-primary mb-1 btn-sm" type="button" onclick="btnEditarCliente('.$data[$i]['Id_cliente'].');"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger mb-1 btn-sm" type="button" onclick="btnEliminarCliente('.$data[$i]['Id_cliente'].');"><i class="bi bi-trash3-fill"></i></button></div>';
+            }else{
+                $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
+                $data[$i]['acciones']= '
+            <div class="btn-group">
+            <button class="btn btn-success mb-1 btn-sm" type="button" onclick="btnActivarCliente('.$data[$i]['Id_cliente'].');"><i class="bi bi-person-arms-up"></i></button>
              </div>';
+            }
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
@@ -67,26 +72,26 @@ class Cliente extends Controller
         die();
     }
     public function editar(int $id){
-        $data= $this->model->editarUsuario($id);
+        $data= $this->model->editarCliente($id);
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
     public function eliminar(int $id){
-        $data= $this->model->eli_act_Usuario(0,$id);
+        $data= $this->model->eli_act_Cliente(0,$id);
         if($data == 1){
             $msg = "ok";
         }else{
-            $msg = "Error al eliminar el usuario";
+            $msg = "Error al eliminar el cliente";
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
     }
     public function activar(int $id){
-        $data= $this->model->eli_act_Usuario(1,$id);
+        $data= $this->model->eli_act_Cliente(1,$id);
         if($data == 1){
             $msg = "ok";
         }else{
-            $msg = "Error al activar el usuario";
+            $msg = "Error al activar el cliente";
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();

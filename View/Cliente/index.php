@@ -14,6 +14,7 @@
                         <th>Correo</th>
                         <th>Teléfono</th>
                         <th>Dirección</th>
+                        <th>Estado</th>
                         <th>Acción</th>
                     </tr>
                 </thead>

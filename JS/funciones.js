@@ -66,11 +66,15 @@ document.addEventListener("DOMContentLoaded", function () {
             'data': "Dirección"
         },
         {
+            'data': "Estado"
+        },
+        {
             'data': "acciones"
         }],
     });
 })
 
+// Funciones Usuario
 function frmLogin(e) {
     e.preventDefault();
     const url = base_url + "Usuario/validar";
@@ -357,10 +361,10 @@ function registrarCliente(e) {
         }
     }
 }
-function btnEditarUsuario(Id_usu) {
-    document.getElementById("title").innerHTML = "ACTUALIZAR USUARIO";
+function btnEditarCliente(Id_cliente) {
+    document.getElementById("title").innerHTML = "ACTUALIZAR CLIENTE";
     document.getElementById("btnAccion").innerHTML = "MODIFICAR";
-    const url = base_url + "Usuario/editar/" + Id_usu;
+    const url = base_url + "Cliente/editar/" + Id_cliente;
     const http = new XMLHttpRequest();
     http.open("GET", url, true);
     http.send();
@@ -368,23 +372,22 @@ function btnEditarUsuario(Id_usu) {
         if (this.readyState == 4 && this.status == 200) {
             const res = JSON.parse(this.responseText);
             // id de la fila selecionado index
-            document.getElementById("id").value = res.Id_usu;
+            document.getElementById("id").value = res.Id_cliente;
             //datos de los campos
-            document.getElementById("dni").value = res.Dni_usu;
-            document.getElementById("nombre").value = res.Nom_usu;
-            document.getElementById("apellido").value = res.Ape_usu;
+            document.getElementById("ruc").value = res.RUC;
+            document.getElementById("nombre").value = res.Nom_cli;
+            document.getElementById("apellido").value = res.Ape_cli;
             document.getElementById("correo").value = res.Correo;
             document.getElementById("telefono").value = res.Telefono;
-            document.getElementById("tipo").value = res.Id_tipo_usu;
-            document.getElementById("claves").classList.add("d-none");
-            $("#nuevo_usuario").modal("show");
+            document.getElementById("direccion").value = res.Dirección;
+            $("#nuevo_cliente").modal("show");
         }
     }
 }
-function btnEliminarUsuario(Id_usu) {
+function btnEliminarCliente(Id_cliente) {
     Swal.fire({
         title: "¿Eliminar campo?",
-        text: "El usuario pasara a estar inactivo",
+        text: "El Cliente pasara a estar inactivo",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -393,7 +396,7 @@ function btnEliminarUsuario(Id_usu) {
         cancelButtonText: "No"
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Usuario/eliminar/" + Id_usu;
+            const url = base_url + "Cliente/eliminar/" + Id_cliente;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();
@@ -403,10 +406,10 @@ function btnEliminarUsuario(Id_usu) {
                     if (res == "ok") {
                         Swal.fire({
                             title: "Mensaje",
-                            text: "Usuario eliminado con exito",
+                            text: "Cliente eliminado con exito",
                             icon: "success"
                         });
-                        tblUsuario.ajax.reload();
+                        tblCliente.ajax.reload();
                     } else {
                         Swal.fire({
                             title: "Mensaje",
@@ -419,7 +422,7 @@ function btnEliminarUsuario(Id_usu) {
         }
     });
 }
-function btnActivarUsuario(Id_usu) {
+function btnActivarCliente(Id_cliente) {
     Swal.fire({
         title: "¿Activar usuario?",
         icon: "warning",
@@ -430,7 +433,7 @@ function btnActivarUsuario(Id_usu) {
         cancelButtonText: "No"
     }).then((result) => {
         if (result.isConfirmed) {
-            const url = base_url + "Usuario/activar/" + Id_usu;
+            const url = base_url + "Cliente/activar/" + Id_cliente;
             const http = new XMLHttpRequest();
             http.open("GET", url, true);
             http.send();

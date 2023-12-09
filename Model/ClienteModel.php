@@ -57,16 +57,16 @@ class ClienteModel extends Query
         }
         return $res;
     }
-    public function editarUsuario(int $id)
+    public function editarCliente(int $id)
     {
-        $sql = "SELECT * FROM usuario WHERE Id_usu=$id";
+        $sql = "SELECT * FROM cliente WHERE Id_cliente=$id";
         $data = $this->select($sql);
         return $data;
     }
-    public function eli_act_Usuario(int $estado,int $id){
+    public function eli_act_Cliente(int $estado,int $id){
         $this->id=$id;
         $this->estado=$estado;
-        $sql= "UPDATE usuario SET Estado= ? WHERE Id_usu= ?";
+        $sql= "UPDATE cliente SET Estado= ? WHERE Id_cliente= ?";
         $datos= array($this->estado, $this->id);
         $data=$this->save($sql,$datos);
         return $data;
