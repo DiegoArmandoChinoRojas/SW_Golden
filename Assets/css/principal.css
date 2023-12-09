@@ -3,9 +3,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+.portada{
+    font-family: 'Dancing Script', cursive;
+    background-image: url(../img/portada.jpg);
+    background-size: 100vw 100vh;
+    width: 83vw;
+    margin-left: 17vw;
+    height: 10vh;
+    background-position: center center;
+    position: relative;
+}
 
 .container-menu{
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     transition: all 500ms ease;
@@ -15,7 +25,6 @@
     background: #1c1c1c;
     height: 100vh;
     top: 0;
-    
 }
 .imagen{
     background-image: url(../img/Paisaje.jpg);
@@ -35,7 +44,7 @@
     font-family: 'Dancing Script', cursive;
     display: block;
     text-decoration: none;
-    padding: 25px;
+    padding: 20px;
     color: #fff;
     border-left: 5px solid transparent;
     transition: all 400ms ease;

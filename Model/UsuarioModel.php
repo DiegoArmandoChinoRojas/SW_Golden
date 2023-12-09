@@ -7,9 +7,9 @@ class UsuarioModel extends Query
     {
         parent::__construct();
     }
-    public function getUsuario(string $usuario, string $clave)
+    public function getUsuario(string $correo, string $clave)
     {
-        $sql = "SELECT * FROM vista_login WHERE Correo='$usuario' and Contraseña='$clave'";
+        $sql = "SELECT * FROM usuario WHERE Correo='$correo' and Contraseña='$clave'";
         $data = $this->select($sql);
         return $data;
     }

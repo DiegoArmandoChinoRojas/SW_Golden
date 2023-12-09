@@ -4,6 +4,9 @@ class Usuario extends Controller
     public function __construct()
     {
         session_start();
+        if(empty($_SESSION['activo'])){
+            header("location: ".base_url);
+        }
         parent::__construct();
     }
     public function index()
@@ -20,11 +23,11 @@ class Usuario extends Controller
             }else{
                 $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
             }
-            $data[$i]['acciones']= '<div>
-            <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');">EDITAR</button>
-            <button class="btn btn-danger mb-2" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');">ELIMINAR</button>
-            <button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_usu'].');">ACTIVAR</button>
-            <div/>';
+            $data[$i]['acciones']= '<div class="btn-group">
+            <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger mb-2" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-trash3-fill"></i></button>
+            <button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-person-arms-up"></i></button>
+            </div>';
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
@@ -33,16 +36,19 @@ class Usuario extends Controller
     // Validación de datos LOGIN
     public function validar()
     {
-        if (empty($_POST["usuario"]) and empty($_POST["clave"])) {
-            $msg = "Los campos están vacios";
+        $correo = $_POST["usuario"];
+        $clave = $_POST["clave"];
+        // Encryptación de contraseña
+        //$hash= hash("SHA256", $clave);
+        if (empty($correo) || empty($clave)) {
+            $msg = "Usuario o contraseña no ingresado";
         } else {
-            $usuario = $_POST["usuario"];
-            $clave = $_POST["clave"];
-            $data = $this->model->getUsuario($usuario, $clave);
+            $data= $this->model->getUsuario($correo,$clave);
             if ($data) {
-                $_SESSION['Correo'] = $data['Correo'];
-                $_SESSION['Contraseña'] = $data['Contraseña'];
-                $msg = "Ok";
+                $_SESSION['Id_usu'] = $data['Id_usu'];
+                $_SESSION['nombre'] = $data['Nom_usu'];
+                $_SESSION['activo'] = true;
+                $msg = "valido";
             }else{
                 $msg = "Usuario o contraseña incorrecta";
             }
@@ -61,7 +67,7 @@ class Usuario extends Controller
         $tipo = $_POST["tipo"];
         $id = $_POST["id"];
         // Encryptación de contraseña
-        $hash= hash("SHA256", $clave);
+        //$hash= hash("SHA256", $clave);
 
         if(empty($dni) || empty($nombre) || empty($apellido) || empty($correo) || empty($telefono) || empty($tipo)){
             $msg = "Todos los campos son obligatorios";
@@ -70,7 +76,7 @@ class Usuario extends Controller
                 if($clave != $confirmar){
                     $msg = "Las contraseñas no coinciden";
                     }else{
-                        $data= $this->model->registrarUsuario($dni, $nombre, $apellido, $correo, $telefono, $hash,$tipo);
+                        $data= $this->model->registrarUsuario($dni, $nombre, $apellido, $correo, $telefono, $clave,$tipo);
                         if($data == "registro"){
                             $msg = "registro";
                         }else if ($data == "existe"){
@@ -117,6 +123,10 @@ class Usuario extends Controller
         }
         echo json_encode($msg, JSON_UNESCAPED_UNICODE);
         die();
+    }
+    public function salir(){
+        session_destroy();
+        header("location:".base_url);
     }
 }
 
