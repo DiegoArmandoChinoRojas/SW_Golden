@@ -2,11 +2,11 @@
 <body>
     <div class="modelo">
         <div class="contenedor">
-            <table class="success" id="tblUsuario">
-                <button class="btn btn-primary mb-3 mt-3" onclick="frmUsuario();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
-                <thead class="contenido">
+            <table id="tblUsuario" class="cell-border compact stripe">
+                <button class="btn btn-primary mb-2 mt-2" onclick="frmUsuario();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
+                <thead>
                     <tr>
-                        <th>Id</th>
+                        <th class="table-cell-edit">Id</th>
                         <th>DNI</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -23,8 +23,8 @@
     <div id="nuevo_usuario" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="title" id="title">NUEVO USUARIO</h5>
+                <div class="modal-header bg-info bg-gradient">
+                    <h5 class="title text-white" id="title">NUEVO USUARIO</h5>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmUsuario">
@@ -85,7 +85,7 @@
                         </div>
                         <div class="botones">
                         <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarUsuario(event);">REGISTRAR</button>
-                        <button class="btn btn-danger" type="button">CANCELAR</button>
+                        <button class="btn btn-danger" data-bs-dismiss="modal" type="button">CANCELAR</button>
                         </div>
                     </form>
                 </div>
@@ -105,6 +105,10 @@
     <script src="<?php echo base_url; ?>JS/buttons.html5.min.js"></script>
     <script src="<?php echo base_url; ?>JS/buttons.print.min.js"></script>
     <script src="<?php echo base_url; ?>JS/popper.min.js"></script>
+
+    <!--DataTables ES-->
+    <script src="<?php echo base_url; ?>JS/languaje.js"></script>
+
     <!--formulario-->
     <script src="<?php echo base_url; ?>JS/bootstrap.bundle.min.js"></script>
 </body>

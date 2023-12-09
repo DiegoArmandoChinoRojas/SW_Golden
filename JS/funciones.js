@@ -1,8 +1,12 @@
 let tblUsuario, tblCliente, tblCategoria;
 
+
 // Tabla de Usuarios
 document.addEventListener("DOMContentLoaded", function () {
     tblUsuario = $('#tblUsuario').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
         ajax: {
             url: base_url + "Usuario/listar",
             dataSrc: ''
@@ -40,6 +44,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // Tabla de Clientes
 document.addEventListener("DOMContentLoaded", function () {
     tblCliente = $('#tblCliente').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
         ajax: {
             url: base_url + "Cliente/listar",
             dataSrc: ''
@@ -76,6 +83,9 @@ document.addEventListener("DOMContentLoaded", function () {
 // Tabla de Categorias
 document.addEventListener("DOMContentLoaded", function () {
     tblCategoria = $('#tblCategoria').DataTable({
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
         ajax: {
             url: base_url + "Categoria/listar",
             dataSrc: ''

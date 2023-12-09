@@ -3,7 +3,7 @@
 <body>
     <div class="modelo">
         <div class="contenedor">
-            <table class="table-success" id="tblCliente">
+            <table id="tblCliente" class="cell-border compact stripe order-column ">
                 <button class="btn btn-primary mb-3 mt-3" onclick="frmCliente();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
                 <thead class="table-success">
                     <tr >
@@ -24,8 +24,8 @@
     <div id="nuevo_cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="title" id="title">NUEVO CLIENTE</h5>
+                <div class="modal-header bg-primary bg-gradient">
+                    <h5 class="title text-white" id="title">NUEVO CLIENTE</h5>
                 </div>
                 <div class="modal-body">
 
@@ -69,7 +69,7 @@
                         </div>
                         <div class="botones">
                             <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarCliente(event);">REGISTRAR</button>
-                            <button class="btn btn-danger" type="button">CANCELAR</button>
+                            <button class="btn btn-danger" data-bs-dismiss="modal" type="button">CANCELAR</button>
                         </div>
                     </form>
                 </div>

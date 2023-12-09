@@ -3,7 +3,7 @@
 <body>
     <div class="modelo">
         <div class="contenedor">
-            <table class="table-success" id="tblCategoria">
+            <table id="tblCategoria" class="cell-border compact stripe">
                 <button class="btn btn-primary mb-3 mt-3" onclick="frmCategoria();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
                 <thead class="table-success">
                     <tr>
@@ -19,8 +19,8 @@
     <div id="nueva_categoria" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="title" id="title">NUEVA CATEGORÍA</h5>
+                <div class="modal-header bg-warning bg-gradient">
+                    <h5 class="title text-white" id="title">NUEVA CATEGORÍA</h5>
                 </div>
                 <div class="modal-body">
                     <form method="post" id="frmCategoria">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="botones">
                             <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarCategoria(event);">REGISTRAR</button>
-                            <button class="btn btn-danger" type="button">CANCELAR</button>
+                            <button class="btn btn-danger" data-bs-dismiss="modal" type="button">CANCELAR</button>
                         </div>
                     </form>
                 </div>
