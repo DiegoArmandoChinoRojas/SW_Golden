@@ -24,7 +24,7 @@ class ClienteModel extends Query
         $verificar = "SELECT * FROM cliente WHERE RUC='$this->ruc'";
         $existe = $this->select($verificar);
         if (empty($existe)) {
-            $sql = "INSERT INTO cliente(RUC, Nom_usu, Ape_usu, Correo, Telefono, Dirección) VALUES (?,?,?,?,?,?)";
+            $sql = "INSERT INTO cliente(RUC, Nom_cli, Ape_cli, Correo, Telefono, Dirección) VALUES (?,?,?,?,?,?)";
             $datos = array($this->ruc, $this->nombre, $this->apellido, $this->correo, $this->telefono, $this->direccion);
             $data = $this->save($sql, $datos);
             if ($data == 1) {
@@ -47,7 +47,7 @@ class ClienteModel extends Query
         $this->direccion =  $direccion;
         $this->id = $id;
 
-        $sql = "UPDATE cliente SET RUC = ?, Nom_usu = ?, Ape_usu = ?, Correo = ?, Telefono = ?, Dirección = ? WHERE Id_cliente= ?";
+        $sql = "UPDATE cliente SET RUC = ?, Nom_cli = ?, Ape_cli = ?, Correo = ?, Telefono = ?, Dirección = ? WHERE Id_cliente= ?";
         $datos = array($this->ruc, $this->nombre, $this->apellido, $this->correo, $this->telefono,$this->direccion, $this->id);
         $data = $this->save($sql, $datos);
         if ($data == 1) {

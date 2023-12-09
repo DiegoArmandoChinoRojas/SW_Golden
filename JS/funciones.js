@@ -1,4 +1,6 @@
 let tblUsuario, tblCliente;
+
+// Tabla de Usuarios
 document.addEventListener("DOMContentLoaded", function () {
     tblUsuario = $('#tblUsuario').DataTable({
         ajax: {
@@ -34,6 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
+
+// Tabla de Clientes
 document.addEventListener("DOMContentLoaded", function () {
     tblCliente = $('#tblCliente').DataTable({
         ajax: {
@@ -47,10 +51,10 @@ document.addEventListener("DOMContentLoaded", function () {
             'data': "RUC"
         },
         {
-            'data': "Nom_usu"
+            'data': "Nom_cli"
         },
         {
-            'data': "Ape_usu"
+            'data': "Ape_cli"
         },
         {
             'data': "Correo"
@@ -66,6 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
+
 function frmLogin(e) {
     e.preventDefault();
     const url = base_url + "Usuario/validar";
@@ -105,6 +110,22 @@ function registrarUsuario(e) {
             position: "top-end",
             icon: "error",
             title: "Todos los campos son obligatorios!!",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }if(isNaN(telefono.value)){
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Teléfono ingresado no es correcto",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }if (isNaN(dni.value)) {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "DNI ingresado no es correcto",
             showConfirmButton: false,
             timer: 3000
         })
@@ -250,7 +271,7 @@ function btnActivarUsuario(Id_usu) {
             }
         }
     });
-}  
+}
 
 // Funciones Cliente
 function frmCliente() {
@@ -276,7 +297,23 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else {
+    }if(isNaN(telefono.value)){
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "Teléfono ingresado no es correcto",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }if (isNaN(ruc.value)) {
+        Swal.fire({
+            position: "top-end",
+            icon: "error",
+            title: "RUC ingresado no es correcto",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }else {
         const url = base_url + "Cliente/registrar";
         const frm = document.getElementById("frmCliente");
         const http = new XMLHttpRequest();
@@ -295,7 +332,7 @@ function registrarCliente(e) {
                     })
                     frm.reset();
                     $("#nuevo_cliente").modal("hide");
-                    tblUsuario.ajax.reload();
+                    tblCliente.ajax.reload();
                 } else if (res == "modificado") {
                     Swal.fire({
                         position: "top-end",
@@ -305,7 +342,7 @@ function registrarCliente(e) {
                         timer: 3000
                     })
                     $("#nuevo_cliente").modal("hide");
-                    //tblUsuario.ajax.reload();
+                    tblCliente.ajax.reload();
                 } else {
                     Swal.fire({
                         position: "top-end",
@@ -418,5 +455,5 @@ function btnActivarUsuario(Id_usu) {
             }
         }
     });
-}  
+}
 
