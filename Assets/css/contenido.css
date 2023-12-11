@@ -6,7 +6,10 @@
     max-width: 83vw;
     min-width: 40vw;
     position: absolute;
-    left: 20vw;
+    margin-top: 5px;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    left: 17vw;
 }
 
 .contenedor {
@@ -15,6 +18,36 @@
     position: absolute;
 }
 
+/* CATEGORIA Y MEDIDA*/
+.modelo1 {
+  max-width: 83vw;
+  min-width: 40vw;
+  position: absolute;
+  left: 17vw;
+}
+.contenedor1{
+  margin-left: 16.5vw;
+  margin-right: 16.5vw;
+  width: 50vw;
+  display: inline-block;
+  padding: 0;
+}
+
+.contenedor2{
+  margin-left: 26.5vw;
+  margin-right: 26.5vw;
+  width: 30vw;
+  display: inline-block;
+  padding: 0;
+}
+
+
+
+
+
+
+
+/* ------------------------*/
 .tb {
     top: 5px;
     width: 100%;
@@ -33,106 +66,44 @@
     justify-content: center;
 }
 .btn{
-    margin: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
-#tblUsuario {
+/* Encabezado */
+.encabezado{
+  background-color: #C2C2C2;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+  font-size: 30px;
+  font-family: 'Dancing Script', cursive;
+}
+
+
+/* TABLA USUARIO-CLIENTE-CATEGORIA-MEDIDA */
+#tblUsuario #tblCliente #tblCategoria #tblMedida #tblProducto{
     border-collapse: collapse;
     width: 80%;
     height: 100%;
   }
   
-  #tblUsuario th, #tblUsuario td {
+  #tblUsuario th, #tblCliente th, #tblCategoria th, #tblMedida th, #tblProducto th, #tblUsuario td, #tblCliente td, #tblCategoria td, #tblMedida td, #tblProducto td{
     border: 1px solid #45e9ff;
     text-align: center;
   }
   
-  #tblUsuario th {
+  #tblUsuario th, #tblCliente th, #tblCategoria th, #tblMedida th, #tblProducto th{
     background-color: #338DFF;
     color: #fff;
   }
   
-  #tblUsuario tbody tr:nth-child(even) {
+  #tblUsuario tbody tr:nth-child(even), #tblCliente tbody tr:nth-child(even),  #tblCategoria tbody tr:nth-child(even), #tblMedida tbody tr:nth-child(even), #tblProducto tbody tr:nth-child(even){
     background-color: #f9f9f9;
   }
   
-  #tblUsuario tbody tr:hover {
-    background-color: #33daff42;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  #tblCliente {
-    border-collapse: collapse;
-    width: 80%;
-    height: 100%;
-  }
-  
-  #tblCliente th, #tblCliente td {
-    border: 1px solid #45e9ff;
-    text-align: center;
-  }
-  
-  #tblCliente th {
-    background-color: #338DFF;
-    color: #fff;
-  }
-  
-  #tblCliente tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  #tblCliente tbody tr:hover {
-    background-color: #33daff42;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  #tblCategoria {
-    border-collapse: collapse;
-    width: 80%;
-    height: 100%;
-  }
-  
-  #tblCategoria th, #tblCategoria td {
-    border: 1px solid #45e9ff;
-    text-align: center;
-  }
-  
-  #tblCategoria th {
-    background-color: #338DFF;
-    color: #fff;
-  }
-  
-  #tblCategoria tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  #tblCategoria tbody tr:hover {
+  #tblUsuario tbody tr:hover, #tblCliente tbody tr:hover, #tblCategoria tbody tr:hover, #tblMedida tbody tr:hover, #tblProducto tbody tr:hover{
     background-color: #33daff42;
   }

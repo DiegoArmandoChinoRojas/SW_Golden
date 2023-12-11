@@ -2,11 +2,11 @@
 <body>
     <div class="modelo">
         <div class="contenedor">
-            <table id="tblUsuario" class="cell-border compact stripe">
-                <button class="btn btn-primary mb-2 mt-2" onclick="frmUsuario();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
-                <thead>
+            <table id="tblUsuario" class="cell-border compact stripe order-column ">
+                <thead> <h1 class="encabezado">Listado de Usuarios</h1>
+                <button class="btn btn-primary" onclick="frmUsuario();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
                     <tr>
-                        <th class="table-cell-edit">Id</th>
+                        <th class="bg-info bg-gradient">Id</th>
                         <th>DNI</th>
                         <th>Nombres</th>
                         <th>Apellidos</th>
@@ -14,7 +14,7 @@
                         <th>Teléfono</th>
                         <th>Tipo</th>
                         <th>Estado</th>
-                        <th>Acción</th>
+                        <th>Editar / Eliminar</th>
                     </tr>
                 </thead>
             </table>

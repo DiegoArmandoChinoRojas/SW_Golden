@@ -2,16 +2,19 @@
 <body>
     <div class="modelo">
         <div class="contenedor">
-            <table id="tblCliente" class="cell-border compact stripe order-column ">
-                <thead> <h1 class="encabezado">Listado de Clientes</h1>
-                <button class="btn btn-primary" onclick="frmCliente();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
-                    <tr >
-                        <th class="bg-info bg-gradient">Id</th>
-                        <th>RUC</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Correo</th>
-                        <th>Teléfono</th>
+            <table id="tblProducto" class="cell-border compact stripe order-column ">
+                <thead> <h1 class="encabezado">Listado de Productos</h1>
+                <button class="btn btn-primary" onclick="frmProducto();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
+                    <tr>
+                    <th class="bg-info bg-gradient">Id</th>
+                        <th>Código</th>
+                        <th>Descripción</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Color</th>
+                        <th>Estilo</th>
+                        <th>Categoría</th>
+                        <th>Talla</th>
                         <th>Estado</th>
                         <th>Editar / Eliminar</th>
                     </tr>
@@ -19,7 +22,7 @@
             </table>
         </div>
     </div>
-    <div id="nuevo_cliente" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
+    <div id="nuevo_producto" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-primary bg-gradient">
@@ -27,7 +30,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" id="frmCliente">
+                    <form method="post" id="frmProducto">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
                             <label for="ruc">RUC</label>
@@ -66,7 +69,7 @@
                             <textarea id="direccion" class="form-control" type="text" name="direccion" placeholder="dirección"></textarea>
                         </div>
                         <div class="botones">
-                            <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarCliente(event);">REGISTRAR</button>
+                            <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarProducto(event);">REGISTRAR</button>
                             <button class="btn btn-danger" data-bs-dismiss="modal" type="button">CANCELAR</button>
                         </div>
                     </form>

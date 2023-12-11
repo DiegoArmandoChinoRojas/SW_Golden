@@ -24,7 +24,7 @@ body{
 }
 
 .contenedor{
-    background-image: url(../img/two.gif);
+    background-image: url(../gift/two.gif);
     background-size: 100% 100%;
     border: 2px solid #fff;
     border-radius:50px;
@@ -82,3 +82,14 @@ input , #btn{
 }
 
 
+/* Visualizar password */
+.password-container {
+    position: relative;
+
+}
+#togglePassword {
+    position: absolute;
+    top: 20%;
+    transform: translateX(950%);
+    cursor: pointer;
+  }

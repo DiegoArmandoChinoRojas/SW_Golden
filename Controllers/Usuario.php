@@ -22,8 +22,8 @@ class Usuario extends Controller
             if($data[$i]["Estado"] == 1){
                 $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
                 $data[$i]['acciones']= '<div class="btn-group">
-            <button class="btn btn-primary mb-2 btn-in-block" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-pencil-square"></i></button>
-            <button class="btn btn-danger mb-2" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-trash3-fill"></i></button>
+            <button class="btn btn-primary btn-sm" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger btn-sm" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-trash3-fill"></i></button>
             </div>';
             }else{
                 $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';

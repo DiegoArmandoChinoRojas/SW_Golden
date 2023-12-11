@@ -1,12 +1,26 @@
-let tblUsuario, tblCliente, tblCategoria;
+let tblUsuario, tblCliente, tblCategoria, tblMedida, tblProducto;
+
+// Parametro de código
+var ep = /^[A-Za-z0-9\-]+$/;
+// Parametro de cadena
+var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
+// Parametro por dominio
+var rc = /^[A-Za-z0-9._-]+@(gmail|hotmail|outlook)\.com$/;
 
 
 // Tabla de Usuarios
 document.addEventListener("DOMContentLoaded", function () {
     tblUsuario = $('#tblUsuario').DataTable({
+        //  Agregando caracteristicas de DataTable
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
+        info: false,
+        ordering: false,
+        lengthMenu: [10],
+        pagingType: "simple",
+        dom: '<"top"i>fr<"bottom"p><"clear">',
+        /* //  Fin d*/
         ajax: {
             url: base_url + "Usuario/listar",
             dataSrc: ''
@@ -44,9 +58,17 @@ document.addEventListener("DOMContentLoaded", function () {
 // Tabla de Clientes
 document.addEventListener("DOMContentLoaded", function () {
     tblCliente = $('#tblCliente').DataTable({
+        //  Agregando caracteristicas de DataTable
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
+        info: false,
+        ordering: false,
+        lengthMenu: [9],
+        pagingType: "simple",
+        dom: '<"top"i>fr<"bottom"p><"clear">',
+
+        /* //  Fin d*/
         ajax: {
             url: base_url + "Cliente/listar",
             dataSrc: ''
@@ -70,9 +92,6 @@ document.addEventListener("DOMContentLoaded", function () {
             'data': "Telefono"
         },
         {
-            'data': "Dirección"
-        },
-        {
             'data': "Estado"
         },
         {
@@ -83,15 +102,25 @@ document.addEventListener("DOMContentLoaded", function () {
 // Tabla de Categorias
 document.addEventListener("DOMContentLoaded", function () {
     tblCategoria = $('#tblCategoria').DataTable({
+        //  Agregando caracteristicas de DataTable
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
+        info: false,
+        ordering: false,
+        lengthMenu: [3],
+        pagingType: "simple",
+        dom: '<"top"i>fr<"bottom"p><"clear">',
+        /* //  Fin d*/
         ajax: {
             url: base_url + "Categoria/listar",
             dataSrc: ''
         },
         columns: [{
             'data': "Id_categoria"
+        },
+        {
+            'data': "Cod_categoria"
         },
         {
             'data': "Nom_cate"
@@ -104,6 +133,87 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
+// Tabla de Medidas
+document.addEventListener("DOMContentLoaded", function () {
+    tblMedida = $('#tblMedida').DataTable({
+        //  Agregando caracteristicas de DataTable
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
+        info: false,
+        ordering: false,
+        lengthMenu: [4],
+        pagingType: "simple",
+        dom: '<"top"i><"bottom"p><"clear">',
+
+        /* //  Fin d*/
+        ajax: {
+            url: base_url + "Categoria/listarM",
+            dataSrc: ''
+        },
+        columns: [{
+            'data': "Id_medida"
+        },
+        {
+            'data': "Descripcion"
+        }],
+    });
+})
+
+// Tabla de Productos
+document.addEventListener("DOMContentLoaded", function () {
+    tblProducto = $('#tblProducto').DataTable({
+        //  Agregando caracteristicas de DataTable
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
+        },
+        info: false,
+        ordering: false,
+        lengthMenu: [10],
+        pagingType: "simple",
+        dom: '<"top"i>fr<"bottom"p><"clear">',
+
+        /* //  Fin d*/
+        ajax: {
+            url: base_url + "Producto/listar",
+            dataSrc: ''
+        },
+        columns: [{
+            'data': "Id_pro"
+        },
+        {
+            'data': "Cod_producto"
+        },
+        {
+            'data': "Detalle_pro"
+        },
+        {
+            'data': "Precio_pro"
+        },
+        {
+            'data': "Cantidad_pro"
+        },
+        {
+            'data': "Color_pro"
+        },
+        {
+            'data': "Estilo_pro"
+        },
+        {
+            'data': "Nom_cate"
+        },
+        {
+            'data': "Descripcion"
+        },
+        {
+            'data': "Estado"
+        },
+        {
+            'data': "acciones"
+        }],
+    });
+})
+
 // Funciones Usuarios
 function frmUsuario() {
     document.getElementById("title").innerHTML = "NUEVO USUARIO";
@@ -122,11 +232,6 @@ function registrarUsuario(e) {
     const telefono = document.getElementById("telefono");
     const tipo = document.getElementById("tipo");
 
-    // Datos paramtro 2 textos
-    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
-    // Datos parametro por dominio
-    var rc = /^[A-Za-z0-9._%-]+@(gmail|hotmail)\.com$/;
-
     if (dni.value == "" || nombre.value == "" || apellido.value == "" || correo.value == "" || telefono.value == "" || tipo.value == "") {
         Swal.fire({
             position: "top",
@@ -139,7 +244,7 @@ function registrarUsuario(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Teléfono ingresado no es correcto",
+            title: "Teléfono invalido, solo se permiten números",
             showConfirmButton: false,
             timer: 3000
         })
@@ -147,15 +252,31 @@ function registrarUsuario(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "DNI ingresado no es correcto",
+            title: "DNI invalido, solo se permiten números",
             showConfirmButton: false,
             timer: 3000
         })
-    }  else if (!regex.test(apellido.value)) {
+    } else if (!isNaN(nombre.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Apellido invalido",
+            title: "Nombre invalido, no se permiten números",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!isNaN(apellido.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Apellido invalido, no se permiten números",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!regex.test(apellido.value)) {
+        Swal.fire({
+            position: "top",
+            icon: "error",
+            title: "Apellido invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
@@ -163,7 +284,7 @@ function registrarUsuario(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Nombre invalido",
+            title: "Nombre invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
@@ -175,7 +296,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    }else {
+    } else {
         const url = base_url + "Usuario/registrar";
         const frm = document.getElementById("frmUsuario");
         const http = new XMLHttpRequest();
@@ -336,11 +457,6 @@ function registrarCliente(e) {
     const telefono = document.getElementById("telefono");
     const direccion = document.getElementById("direccion");
 
-    // Datos parametro de textos
-    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
-    // Datos parametro por dominio
-    var rc = /^[A-Za-z0-9._%-]+@(gmail|hotmail)\.com$/;
-
     if (ruc.value == "" || nombre.value == "" || apellido.value == "" || correo.value == "" || telefono.value == "" || direccion.value == "") {
         Swal.fire({
             position: "top",
@@ -353,7 +469,7 @@ function registrarCliente(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Teléfono ingresado no es correcto",
+            title: "Teléfono invalido, solo debe contener números",
             showConfirmButton: false,
             timer: 3000
         })
@@ -361,7 +477,7 @@ function registrarCliente(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "RUC ingresado no es correcto",
+            title: "RUC invalido, solo deben contener números",
             showConfirmButton: false,
             timer: 3000
         })
@@ -369,7 +485,7 @@ function registrarCliente(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Apellido invalido",
+            title: "Apellido invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
@@ -377,7 +493,7 @@ function registrarCliente(e) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Nombre invalido",
+            title: "Nombre invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
@@ -532,7 +648,7 @@ function btnActivarCliente(Id_cliente) {
     });
 }
 
-// Funciones Categoria
+// Funciones Categorias de Producto
 function frmCategoria() {
     document.getElementById("title").innerHTML = "NUEVA CATEGORÍA";
     document.getElementById("btnAccion").innerHTML = "REGISTRAR";
@@ -542,15 +658,14 @@ function frmCategoria() {
 }
 function registrarCategoria(e) {
     e.preventDefault();
+    const codigo = document.getElementById("codigo");
     const descripcion = document.getElementById("descripcion");
-    // Datos parametro de textos
-    var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
 
-    if (descripcion.value == "") {
+    if (descripcion.value == "" || codigo.value == "") {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "El campo es obligatorio!!",
+            title: "Todos los campos son obligatorios!!",
             showConfirmButton: false,
             timer: 3000
         })
@@ -558,7 +673,7 @@ function registrarCategoria(e) {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Descripción invalida",
+            title: "Descripción invalida, no se permiten números",
             showConfirmButton: false,
             timer: 3000
         })
@@ -566,11 +681,19 @@ function registrarCategoria(e) {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Descripción invalida",
+            title: "Descripción invalida, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
-    }else {
+    } else if (!ep.test(codigo.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Código invalido, no se permiten caracteres especiales",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else {
         const url = base_url + "Categoria/registrar";
         const frm = document.getElementById("frmCategoria");
         const http = new XMLHttpRequest();
@@ -627,6 +750,7 @@ function btnEditarCategoria(Id_categoria) {
             // id de la fila selecionado index
             document.getElementById("id").value = res.Id_categoria;
             //datos de los campos
+            document.getElementById("codigo").value = res.Cod_categoria;
             document.getElementById("descripcion").value = res.Nom_cate;
             $("#nueva_categoria").modal("show");
         }
@@ -708,3 +832,199 @@ function btnActivarCategoria(Id_categoria) {
     });
 }
 
+// Funciones Producto
+
+function frmProducto() {
+    document.getElementById("title").innerHTML = "NUEVO PRODUCTO";
+    document.getElementById("btnAccion").innerHTML = "REGISTRAR";
+    document.getElementById("frmProducto").reset();
+    $("#nuevo_producto").modal("show");
+    document.getElementById("id").value = "";
+}
+function registrarProducto(e) {
+    e.preventDefault();
+    const codigo = document.getElementById("codigo");
+    const descripcion = document.getElementById("descripcion");
+    const precio = document.getElementById("precio");
+    const stock = document.getElementById("stock");
+    const color = document.getElementById("color");
+    const estilo = document.getElementById("estilo");
+    const categoria = document.getElementById("cate");
+    const talla = document.getElementById("talla");
+
+    if (codigo.value == "" || descripcion.value == "" || precio.value == "" || stock.value == "" || color.value == "" || estilo.value == "" || categoria.value == "" || talla.value == "") {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Todos los campos son obligatorios!!",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!isNaN(descripcion.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Descripción invalida, no se permiten números",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!regex.test(descripcion.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Descripción invalida, no se permiten caracteres especiales",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!ep.test(codigo.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Código invalido, no se permiten caracteres especiales",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else {
+        const url = base_url + "Producto/registrar";
+        const frm = document.getElementById("frmProducto");
+        const http = new XMLHttpRequest();
+        http.open("POST", url, true);
+        http.send(new FormData(frm));
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                if (res == "registro") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Producto registrado exitosamente!!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    frm.reset();
+                    $("#nuevo_producto").modal("hide");
+                    tblCategoria.ajax.reload();
+                } else if (res == "modificado") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Producto actualizado exitosamente!!",
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    $("#nueva_producto").modal("hide");
+                    tblCategoria.ajax.reload();
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: res,
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                }
+            }
+
+        }
+    }
+}
+function btnEditarProducto(Id_pro) {
+    document.getElementById("title").innerHTML = "ACTUALIZAR PRODUCTO";
+    document.getElementById("btnAccion").innerHTML = "MODIFICAR";
+    const url = base_url + "Producto/editar/" + Id_pro;
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            const res = JSON.parse(this.responseText);
+            // id de la fila selecionado index
+            document.getElementById("id").value = res.Id_pro;
+            //datos de los campos
+            document.getElementById("codigo").value = res.Cod_producto;
+            document.getElementById("descripcion").value = res.Detalle_pro;
+            document.getElementById("precio").value = res.Precio_pro;
+            document.getElementById("stock").value = res.Cantidad_pro;
+            document.getElementById("color").value = res.Color_pro;
+            document.getElementById("estilo").value = res.Estilo_pro;
+            document.getElementById("cate").value = res.Id_cate;
+            document.getElementById("talla").value = res.Id_medida;
+            $("#nueva_categoria").modal("show");
+        }
+    }
+}
+function btnEliminarProducto(Id_pro) {
+    Swal.fire({
+        title: "¿Eliminar campo?",
+        text: "El Producto pasara a estar inactivo",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Producto/eliminar/" + Id_pro;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse($this.responseText);
+                    if (res == "ok") {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "Producto eliminado con exito",
+                            icon: "success"
+                        });
+                        tblCategoria.ajax.reload();
+                    } else {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+        }
+    });
+}
+function btnActivarCategoria(Id_pro) {
+    Swal.fire({
+        title: "¿Activar producto?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            const url = base_url + "Producto/activar/" + Id_pro;
+            const http = new XMLHttpRequest();
+            http.open("GET", url, true);
+            http.send();
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse($this.responseText);
+                    if (res == "ok") {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: "La activación se realizo con exito¡¡",
+                            icon: "success"
+                        });
+                        tblCategoria.ajax.reload();
+                    } else {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+        }
+    });
+}

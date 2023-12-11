@@ -1,7 +1,7 @@
 <?php
 class CategoriaModel extends Query
 {
-    private $descripcion, $estado, $id;
+    private $codigo,$descripcion, $estado, $id;
 
     public function __construct()
     {
@@ -13,14 +13,25 @@ class CategoriaModel extends Query
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function registrarCategoria(string $descripcion)
+    public function getMedidas()
     {
+        $sql = "SELECT * FROM medida";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function registrarCategoria(string $codigo, string $descripcion)
+    {
+        $this->codigo= $codigo;
         $this->descripcion =  $descripcion;
         $verificar = "SELECT * FROM categoria WHERE Nom_cate='$this->descripcion'";
+        $verificar1 = "SELECT * FROM categoria WHERE Cod_categoria='$this->codigo'";
+       
         $existe = $this->select($verificar);
-        if (empty($existe)) {
-            $sql = "INSERT INTO categoria(Nom_cate) VALUES (?)";
-            $datos = array($this->descripcion);
+        $existe1 = $this->select($verificar1);
+
+        if (empty($existe) and empty($existe1)) {
+            $sql = "INSERT INTO categoria(Cod_categoria,Nom_cate) VALUES (?,?)";
+            $datos = array($this->codigo,$this->descripcion);
             $data = $this->save($sql, $datos);
             if ($data == 1) {
                 $res = "registro";
@@ -32,13 +43,14 @@ class CategoriaModel extends Query
         }
         return $res;
     }
-    public function modificarCategoria(string $descripcion, int $id)
+    public function modificarCategoria(string $codigo,string $descripcion, int $id)
     {
+        $this->codigo=$codigo;
         $this->descripcion = $descripcion;
         $this->id = $id;
 
-        $sql = "UPDATE categoria SET Nom_cate = ? WHERE Id_categoria= ?";
-        $datos = array($this->descripcion, $this->id);
+        $sql = "UPDATE categoria SET Cod_categoria = ?, Nom_cate = ? WHERE Id_categoria= ?";
+        $datos = array($this->$codigo,$this->descripcion, $this->id);
         $data = $this->save($sql, $datos);
         if ($data == 1) {
             $res = "modificado";

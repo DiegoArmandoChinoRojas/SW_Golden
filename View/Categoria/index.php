@@ -1,20 +1,33 @@
 <?php include "View/layout/principal.php"; ?>
 
 <body>
-    <div class="modelo">
-        <div class="contenedor">
-            <table id="tblCategoria" class="cell-border compact stripe">
-                <button class="btn btn-primary mb-3 mt-3" onclick="frmCategoria();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
-                <thead class="table-success">
+    <div class="modelo1">
+        <div class="contenedor1">
+            <table id="tblCategoria" class="cell-border compact stripe order-column ">
+                <thead> <h1 class="encabezado">Listado de Categorías</h1>
+                <button class="btn btn-primary" onclick="frmCategoria();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
                     <tr>
-                        <th>Id</th>
+                        <th class="bg-info bg-gradient">Id</th>
+                        <th>Código</th>
                         <th>Descripción</th>
                         <th>Estado</th>
-                        <th>Acción</th>
+                        <th>Editar / Eliminar</th>
+                    </tr>
+                </thead>
+            </table>
+            <h1 class="encabezado">Listado de Tallas</h1>
+        </div>
+        <div class="contenedor2">
+            <table id="tblMedida" class="cell-border compact stripe">
+                <thead>
+                    <tr>
+                        <th class="bg-info bg-gradient">Id</th>
+                        <th>Tallas</th>
                     </tr>
                 </thead>
             </table>
         </div>
+    </div>
     </div>
     <div id="nueva_categoria" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="my-modal-title" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -26,8 +39,12 @@
                     <form method="post" id="frmCategoria">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="código">
+                        </div>
+                        <div class="form-group">
                             <label for="descripcion">Categoría</label>
-                            <input id="descripcion" class="form-control" type="text" name="descripcion" placeholder="descripcion">
+                            <input id="descripcion" class="form-control" type="text" name="descripcion" placeholder="descripción">
                         </div>
                         <div class="botones">
                             <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarCategoria(event);">REGISTRAR</button>
