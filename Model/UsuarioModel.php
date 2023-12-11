@@ -34,8 +34,10 @@ class UsuarioModel extends Query
         $this->telefono =  $telefono;
         $this->clave = $clave;
         $this->tipo =  $tipo;
+
         $verificar = "SELECT * FROM usuario WHERE Correo='$this->correo'";
         $verificar1 = "SELECT * FROM usuario WHERE Dni_usu='$this->dni'";
+        
         $existe = $this->select($verificar);
         $existe1 = $this->select($verificar1);
         if (empty($existe) and empty($existe1)) {

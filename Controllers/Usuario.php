@@ -19,22 +19,21 @@ class Usuario extends Controller
     {
         $data = $this->model->getUsuarios();
         for ($i = 0; $i < count($data); $i++) {
-            if($data[$i]["Estado"] == 1){
+            if ($data[$i]["Estado"] == 1) {
                 $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
-                $data[$i]['acciones']= '<div class="btn-group">
-            <button class="btn btn-primary btn-sm" type="button" onclick="btnEditarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-pencil-square"></i></button>
-            <button class="btn btn-danger btn-sm" type="button" onclick="btnEliminarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-trash3-fill"></i></button>
+                $data[$i]['acciones'] = '<div class="btn-group">
+            <button class="btn btn-primary btn-sm" type="button" onclick="btnEditarUsuario(' . $data[$i]['Id_usu'] . ');"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger btn-sm" type="button" onclick="btnEliminarUsuario(' . $data[$i]['Id_usu'] . ');"><i class="bi bi-trash3-fill"></i></button>
             </div>';
-            }else{
+            } else {
                 $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
-                $data[$i]['acciones']= '<div class="btn-group">
-            <button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario('.$data[$i]['Id_usu'].');"><i class="bi bi-person-arms-up"></i></button>
+                $data[$i]['acciones'] = '<div class="btn-group"><button class="btn btn-success mb-2" type="button" onclick="btnActivarUsuario(' . $data[$i]['Id_usu'] . ');"><i class="bi bi-person-arms-up"></i></button>
             </div>';
             }
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
-    }         
+    }
     // Validación de datos LOGIN
     public function validar()
     {

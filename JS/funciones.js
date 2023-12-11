@@ -903,7 +903,7 @@ function registrarProducto(e) {
                     })
                     frm.reset();
                     $("#nuevo_producto").modal("hide");
-                    tblCategoria.ajax.reload();
+                    tblProducto.ajax.reload();
                 } else if (res == "modificado") {
                     Swal.fire({
                         position: "center",
@@ -912,8 +912,8 @@ function registrarProducto(e) {
                         showConfirmButton: false,
                         timer: 3000
                     })
-                    $("#nueva_producto").modal("hide");
-                    tblCategoria.ajax.reload();
+                    $("#nuevo_producto").modal("hide");
+                    tblProducto.ajax.reload();
                 } else {
                     Swal.fire({
                         position: "center",
@@ -949,7 +949,7 @@ function btnEditarProducto(Id_pro) {
             document.getElementById("estilo").value = res.Estilo_pro;
             document.getElementById("cate").value = res.Id_cate;
             document.getElementById("talla").value = res.Id_medida;
-            $("#nueva_categoria").modal("show");
+            $("#nuevo_producto").modal("show");
         }
     }
 }
@@ -978,7 +978,7 @@ function btnEliminarProducto(Id_pro) {
                             text: "Producto eliminado con exito",
                             icon: "success"
                         });
-                        tblCategoria.ajax.reload();
+                        tblProducto.ajax.reload();
                     } else {
                         Swal.fire({
                             title: "Mensaje",
@@ -991,7 +991,7 @@ function btnEliminarProducto(Id_pro) {
         }
     });
 }
-function btnActivarCategoria(Id_pro) {
+function btnActivarProducto(Id_pro) {
     Swal.fire({
         title: "¿Activar producto?",
         icon: "warning",
@@ -1015,7 +1015,7 @@ function btnActivarCategoria(Id_pro) {
                             text: "La activación se realizo con exito¡¡",
                             icon: "success"
                         });
-                        tblCategoria.ajax.reload();
+                        tblProducto.ajax.reload();
                     } else {
                         Swal.fire({
                             title: "Mensaje",

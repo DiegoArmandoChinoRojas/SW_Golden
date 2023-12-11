@@ -50,7 +50,7 @@ class Producto extends Controller
             $msg = "Todos los campos son obligatorios";
         }else{
             if($id == ""){
-                        $data= $this->model->registrarProcucto($codigo, $descripcion, $precio, $stock, $color, $estilo , $cate, $talla);
+                        $data= $this->model->registrarProducto($codigo, $descripcion, $precio, $stock, $color, $estilo , $cate, $talla);
                         if($data == "registro"){
                             $msg = "registro";
                         }else if ($data == "existe"){

@@ -1,16 +1,18 @@
 <?php include "View/layout/principal.php"; ?>
+
 <body>
     <div class="modelo">
         <div class="contenedor">
             <table id="tblProducto" class="cell-border compact stripe order-column ">
-                <thead> <h1 class="encabezado">Listado de Productos</h1>
-                <button class="btn btn-primary" onclick="frmProducto();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
+                <thead>
+                    <h1 class="encabezado">Listado de Productos</h1>
+                    <button class="btn btn-primary" onclick="frmProducto();" type="button"><i class="bi bi-plus-circle-fill"></i></button>
                     <tr>
-                    <th class="bg-info bg-gradient">Id</th>
+                        <th class="bg-info bg-gradient">Id</th>
                         <th>Código</th>
                         <th>Descripción</th>
                         <th>Precio</th>
-                        <th>Cantidad</th>
+                        <th>Stock</th>
                         <th>Color</th>
                         <th>Estilo</th>
                         <th>Categoría</th>
@@ -32,42 +34,52 @@
 
                     <form method="post" id="frmProducto">
                         <input type="hidden" id="id" name="id">
-                        <div class="form-group">
-                            <label for="ruc">RUC</label>
-                            <input id="ruc" class="form-control" type="text" name="ruc" placeholder="RUC">
-                        </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="nombre">Nombre</label>
-                                    <input id="nombre" class="form-control" type="text" name="nombre" placeholder="nombre">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="apellido">Apellido</label>
-                                    <input id="apellido" class="form-control" type="text" name="apellido" placeholder="apellido">
-                                </div>
-                            </div>
+                            <div class="form-group">
+                            <label for="codigo">Código</label>
+                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="codigo">
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="correo">Correo</label>
-                                    <input id="correo" class="form-control" type="text" name="correo" placeholder="correo">
-                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="telefono">Teléfono</label>
-                                    <input id="telefono" class="form-control" type="text" name="telefono" placeholder="telefono">
+                                    <label for="precio">Precio</label>
+                                    <input id="precio" class="form-control" type="text" name="precio" placeholder="precio">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <textarea id="direccion" class="form-control" type="text" name="direccion" placeholder="dirección"></textarea>
+                                    <label for="descripcion">Descripción</label>
+                                    <input id="descripcion" class="form-control" type="text" name="descripcion" placeholder="descripcion">
+                                </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="stock">Stock</label>
+                                    <input id="stock" class="form-control" type="text" name="stock" placeholder="stock">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="color">Color</label>
+                                    <input id="color" class="form-control" type="text" name="color" placeholder="color">
+                                </div>
+                            </div>
                         </div>
+        
+                        <div class="form-group">
+                            <label for="estilo">Estilo</label>
+                            <input id="estilo" class="form-control" type="text" name="estilo" placeholder="estilo">
+                        </div>
+                        <div class="form-group">
+                            <label for="cate">Categoria</label>
+                            <input id="cate" class="form-control" type="text" name="cate" placeholder="cate">
+                        </div>
+                        <div class="form-group">
+                            <label for="talla">Talla</label>
+                            <input id="talla" class="form-control" type="text" name="talla" placeholder="talla">
+                        </div>
+                        
                         <div class="botones">
                             <button class="btn btn-primary" id="btnAccion" type="button" onclick="registrarProducto(event);">REGISTRAR</button>
                             <button class="btn btn-danger" data-bs-dismiss="modal" type="button">CANCELAR</button>
