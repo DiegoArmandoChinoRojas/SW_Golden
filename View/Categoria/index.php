@@ -39,11 +39,11 @@
                     <form method="post" id="frmCategoria">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">
-                            <label for="codigo">Código</label>
-                            <input id="codigo" class="form-control" type="text" name="codigo" placeholder="código">
+                            <label for="codigoc">Código</label>
+                            <input id="codigoc" class="form-control" type="text" name="codigoc" placeholder="códigoc">
                         </div>
                         <div class="form-group">
-                            <label for="descripcion">Categoría</label>
+                            <label for="descripcion">Descripción</label>
                             <input id="descripcion" class="form-control" type="text" name="descripcion" placeholder="descripción">
                         </div>
                         <div class="botones">

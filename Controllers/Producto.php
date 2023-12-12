@@ -4,53 +4,61 @@ class Producto extends Controller
     public function __construct()
     {
         session_start();
-        if(empty($_SESSION['activo'])){
-            header("location: ".base_url);
-        }
         parent::__construct();
     }
     public function index()
     {
-        $this->view->mostrarView($this, "index");
+        if (empty($_SESSION['activo'])) {
+            header("location: " . base_url);
+        }
+        // ENTRADA Y ENVIO DE DATOS X TABLA
+        $data['medidas'] = $this->model->getTallas();
+        $data['categorias'] = $this->model->getCategorias();
+        $data['colores'] = $this->model->getColores();
+        $data['estilos'] = $this->model->getEstilos();
+
+        $this->view->mostrarView($this, "index", $data);
     }
 
     public function listar(){
         $data= $this->model->getProductos();
         for($i=0; $i<count($data);$i++){
             if($data[$i]["Estado"] == 1){
-                $data[$i]["Estado"] = '<b-badge variant="success">Activo</b-badge>';
+                $data[$i]["Estado"] = '<span class="badge bg-success">Activo</span>';
                 $data[$i]['acciones']= '
             <div class="btn-group">
-            <button class="btn btn-primary mb-1 btn-sm" type="button" onclick="btnEditarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-pencil-square"></i></button>
-            <button class="btn btn-danger mb-1 btn-sm" type="button" onclick="btnEliminarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-trash3-fill"></i></button></div>';
+            <button class="btn btn-primary btn-sm" type="button" onclick="btnEditarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-pencil-square"></i></button>
+            <button class="btn btn-danger btn-sm" type="button" onclick="btnEliminarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-trash3-fill"></i></button></div>';
             }else{
-                $data[$i]["Estado"] = '<b-badge variant="danger">Inactivo</b-badge>';
-                $data[$i]['acciones']= '
-            <div class="btn-group">
+                $data[$i]["Estado"] = '<span class="badge bg-danger">Inactivo</span>';
+                $data[$i]['acciones']= '<div class="btn-group">
             <button class="btn btn-success mb-1 btn-sm" type="button" onclick="btnActivarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-person-arms-up"></i></button>
              </div>';
+            }
+            if($data[$i]["Cantidad_pro"] <=50){
+                $data[$i]["Cantidad_pro"] = '<span class="badge bg-danger">Revisar Stock</span>';
             }
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
         die();
     }
     public function registrar(){
-        $codigo = $_POST["codigo"];
+        $codigop = $_POST["codigop"];
         $descripcion = $_POST["descripcion"];
         $precio = $_POST["precio"];
         $stock = $_POST["stock"];
         $color = $_POST["color"];
         $estilo = $_POST["estilo"];
-        $cate = $_POST["cate"];
+        $categoria = $_POST["categoria"];
         $talla = $_POST["talla"];
 
         $id = $_POST["id"];
 
-        if(empty($codigo) || empty($descripcion) || empty($precio) || empty($stock) || empty($color) || empty($estilo)|| empty($cate) || empty($talla)){
+        if(empty($codigop) || empty($descripcion) || empty($precio) || empty($stock)){
             $msg = "Todos los campos son obligatorios";
         }else{
             if($id == ""){
-                        $data= $this->model->registrarProducto($codigo, $descripcion, $precio, $stock, $color, $estilo , $cate, $talla);
+                        $data= $this->model->registrarProducto($codigop,  $descripcion,  $precio,  $stock ,  $categoria,  $talla,  $color, $estilo);
                         if($data == "registro"){
                             $msg = "registro";
                         }else if ($data == "existe"){
@@ -59,7 +67,7 @@ class Producto extends Controller
                             $msg = "Error al registrar el producto";
                         } 
                 }else{
-                    $data= $this->model->modificarProducto($codigo, $descripcion, $precio, $stock, $color, $estilo , $cate, $talla, $id);
+                    $data= $this->model->modificarProducto($codigop,  $descripcion,  $precio,  $stock ,  $categoria,  $talla,  $color, $estilo, $id);
                         if($data == "modificado"){
                             $msg = "modificado";
                         }else{

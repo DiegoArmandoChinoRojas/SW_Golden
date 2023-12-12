@@ -1,38 +1,65 @@
 <?php
 class ProductoModel extends Query
 {
-    private $codigo, $descripcion,$precio,$stock, $color, $estilo,$estado,$categoria,$talla, $id;
+    private $codigop,  $descripcion, $precio, $stock , $estilo, $categoria, $talla, $color, $estado, $id;
 
     public function __construct()
     {
         parent::__construct();
     }
-    public function getProductos()
+
+    // METODOS PARA UNIR DATOS
+    public function getTallas()
     {
-        $sql = "SELECT p.*, c.Nom_cate,m.Descripcion FROM producto as p INNER JOIN categoria as c ON p.Id_cate=c.Id_categoria INNER JOIN medida as m ON p.Id_medida=m.Id_medida";
+        $sql = "SELECT * FROM medida";
         $data = $this->selectAll($sql);
         return $data;
     }
-    public function registrarProducto(string $codigo,  string $descripcion, int $precio, int $stock , string $color, string $estilo, string $categoria, string $talla)
+    public function getColores()
     {
-        $this->codigo =  $codigo;
+        $sql = "SELECT * FROM color";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getCategorias()
+    {
+        $sql = "SELECT * FROM categoria WHERE Estado=1";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+    public function getEstilos()
+    {
+        $sql = "SELECT * FROM estilo";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
+    // UNION DE TABLAS
+    public function getProductos()
+    {
+        $sql = "SELECT p.*, ct.Nom_cate,m.Descripcion,c.Detalle_color, e.Detalle_estilo FROM producto as p INNER JOIN categoria as ct ON p.Id_cate=ct.Id_categoria INNER JOIN medida as m ON p.Id_medida=m.Id_medida INNER JOIN color as c ON c.Id_color=p.Id_color INNER JOIN estilo as e ON p.Id_estilo=e.Id_estilo";
+        $data = $this->selectAll($sql);
+        return $data;
+    }
+
+    // FIN DE CAPTURAS
+
+    // INICIO DEL PROCESO
+    public function registrarProducto( string $codigop, string $descripcion, float $precio, int $stock , string $categoria, string $talla, string $color, string $estilo)
+    {
+        $this->codigop =  $codigop;
         $this->descripcion =  $descripcion;
         $this->precio =  $precio;
         $this->stock =  $stock;
-        $this->color =  $color;
         $this->estilo = $estilo;
         $this->categoria =  $categoria;
         $this->talla =  $talla;
-
-        $verificar = "SELECT * FROM producto WHERE Cod_producto='$this->codigo'";
-        $verificar1 = "SELECT * FROM producto WHERE Detalle_pro='$this->descripcion'";
-
+        $this->color =  $color;
+        $verificar = "SELECT * FROM producto WHERE Cod_producto='$this->codigop'";
         $existe = $this->select($verificar);
-        $existe1 = $this->select($verificar1);
-
-        if (empty($existe) and empty($existe1)) {
-            $sql = "INSERT INTO producto(Cod_producto, Detalle_pro, Precio_pro, Cantidad_pro, Color_pro, Estilo_pro, Id_cate, Id_medida) VALUES (?,?,?,?,?,?,?,?)";
-            $datos = array($this->codigo, $this->descripcion, $this->precio,$this->stock, $this->color, $this->estilo, $this->categoria, $this->talla);
+        if (empty($existe)) {
+            $sql = "INSERT INTO producto(Cod_producto, Detalle_pro, Precio_pro, Cantidad_pro,Id_cate, Id_medida, Id_color, Id_Estilo) VALUES (?,?,?,?,?,?,?,?)";
+            $datos = array($this->codigop, $this->descripcion, $this->precio, $this->stock, $this->categoria, $this->talla, $this->color,$this->estilo);
             $data = $this->save($sql, $datos);
             if ($data == 1) {
                 $res = "registro";
@@ -44,19 +71,21 @@ class ProductoModel extends Query
         }
         return $res;
     }
-    public function modificarProducto(string $codigo,  string $descripcion, float $precio, int $stock , string $color, string $estilo, string $categoria, string $talla, int $id)
+    public function modificarProducto( string $codigop, string $descripcion, float $precio, int $stock ,  string $categoria,  string $talla, string $color, string $estilo, int $id)
     {
-        $this->codigo =  $codigo;
+        $this->codigop =  $codigop;
         $this->descripcion =  $descripcion;
         $this->precio =  $precio;
         $this->stock =  $stock;
-        $this->color =  $color;
         $this->estilo = $estilo;
         $this->categoria =  $categoria;
         $this->talla =  $talla;
+        $this->color =  $color;
+
         $this->id = $id;
-        $sql = "UPDATE producto SET Cod_producto= ?, Detalle_pro=?, Precio_pro=?, Cantidad_pro=?, Color_pro=?, Estilo_pro=?, Id_cate=?, Id_medida=? WHERE Id_pro= ?";
-        $datos = array($this->codigo, $this->descripcion, $this->precio,$this->stock, $this->color, $this->estilo, $this->categoria, $this->talla, $this->id);
+
+        $sql = "UPDATE producto SET Cod_producto = ?, Detalle_pro = ? , Precio_pro = ?, Cantidad_pro = ?, Id_cate= ?, Id_medida = ?, Id_color = ?, Id_estilo = ? WHERE Id_pro = ?";
+        $datos = array($this->codigop, $this->descripcion, $this->precio, $this->stock, $this->categoria, $this->talla, $this->color,$this->estilo, $this->id);
         $data = $this->save($sql, $datos);
         if ($data == 1) {
             $res = "modificado";
@@ -71,12 +100,13 @@ class ProductoModel extends Query
         $data = $this->select($sql);
         return $data;
     }
-    public function eli_act_Producto(int $estado,int $id){
-        $this->id=$id;
-        $this->estado=$estado;
-        $sql= "UPDATE producto SET Estado= ? WHERE Id_pro= ?";
-        $datos= array($this->estado, $this->id);
-        $data=$this->save($sql,$datos);
+    public function eli_act_Producto(int $estado, int $id)
+    {
+        $this->id = $id;
+        $this->estado = $estado;
+        $sql = "UPDATE producto SET Estado= ? WHERE Id_pro= ?";
+        $datos = array($this->estado, $this->id);
+        $data = $this->save($sql, $datos);
         return $data;
     }
 }

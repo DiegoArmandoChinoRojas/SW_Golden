@@ -1,7 +1,7 @@
 let tblUsuario, tblCliente, tblCategoria, tblMedida, tblProducto;
 
 // Parametro de código
-var ep = /^[A-Za-z0-9\-]+$/;
+var cc = /^[A-Za-z0-9]+$/;
 // Parametro de cadena
 var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
 // Parametro por dominio
@@ -16,8 +16,9 @@ document.addEventListener("DOMContentLoaded", function () {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
         info: false,
-        ordering: false,
         lengthMenu: [10],
+        ordering: true,
+        order: [[0, "desc"]],
         pagingType: "simple",
         dom: '<"top"i>fr<"bottom"p><"clear">',
         /* //  Fin d*/
@@ -63,8 +64,9 @@ document.addEventListener("DOMContentLoaded", function () {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
         info: false,
-        ordering: false,
         lengthMenu: [9],
+        ordering: true,
+        order: [[0, "desc"]],
         pagingType: "simple",
         dom: '<"top"i>fr<"bottom"p><"clear">',
 
@@ -99,6 +101,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
+
 // Tabla de Categorias
 document.addEventListener("DOMContentLoaded", function () {
     tblCategoria = $('#tblCategoria').DataTable({
@@ -133,6 +136,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }],
     });
 })
+
 // Tabla de Medidas
 document.addEventListener("DOMContentLoaded", function () {
     tblMedida = $('#tblMedida').DataTable({
@@ -168,9 +172,10 @@ document.addEventListener("DOMContentLoaded", function () {
             url: '//cdn.datatables.net/plug-ins/1.13.7/i18n/es-ES.json',
         },
         info: false,
-        ordering: false,
         lengthMenu: [10],
         pagingType: "simple",
+        ordering: true,
+        order: [[0, "desc"]],
         dom: '<"top"i>fr<"bottom"p><"clear">',
 
         /* //  Fin d*/
@@ -185,25 +190,25 @@ document.addEventListener("DOMContentLoaded", function () {
             'data': "Cod_producto"
         },
         {
+            'data': "Nom_cate"
+        },
+        {
             'data': "Detalle_pro"
+        },
+        {
+            'data': "Detalle_estilo"
+        },
+        {
+            'data': "Detalle_color"
+        },
+        {
+            'data': "Descripcion"
         },
         {
             'data': "Precio_pro"
         },
         {
             'data': "Cantidad_pro"
-        },
-        {
-            'data': "Color_pro"
-        },
-        {
-            'data': "Estilo_pro"
-        },
-        {
-            'data': "Nom_cate"
-        },
-        {
-            'data': "Descripcion"
         },
         {
             'data': "Estado"
@@ -288,7 +293,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!rc.test(correo.value)) {
+    }  else if (!rc.test(correo.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -366,7 +371,7 @@ function btnEditarUsuario(Id_usu) {
 }
 function btnEliminarUsuario(Id_usu) {
     Swal.fire({
-        title: "¿Eliminar campo?",
+        title: "¿Descartar registro?",
         text: "El usuario pasara a estar inactivo",
         icon: "warning",
         showCancelButton: true,
@@ -404,7 +409,7 @@ function btnEliminarUsuario(Id_usu) {
 }
 function btnActivarUsuario(Id_usu) {
     Swal.fire({
-        title: "¿Activar usuario?",
+        title: "¿Reintegrar usuario?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -574,7 +579,7 @@ function btnEditarCliente(Id_cliente) {
 }
 function btnEliminarCliente(Id_cliente) {
     Swal.fire({
-        title: "¿Eliminar campo?",
+        title: "¿Descartar registro?",
         text: "El Cliente pasara a estar inactivo",
         icon: "warning",
         showCancelButton: true,
@@ -612,7 +617,7 @@ function btnEliminarCliente(Id_cliente) {
 }
 function btnActivarCliente(Id_cliente) {
     Swal.fire({
-        title: "¿Activar usuario?",
+        title: "¿Reintegrar Cliente?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -658,12 +663,12 @@ function frmCategoria() {
 }
 function registrarCategoria(e) {
     e.preventDefault();
-    const codigo = document.getElementById("codigo");
+    const codigoc = document.getElementById("codigoc");
     const descripcion = document.getElementById("descripcion");
 
-    if (descripcion.value == "" || codigo.value == "") {
+    if (descripcion.value == "" || codigoc.value == "") {
         Swal.fire({
-            position: "center",
+            position: "top",
             icon: "error",
             title: "Todos los campos son obligatorios!!",
             showConfirmButton: false,
@@ -682,14 +687,6 @@ function registrarCategoria(e) {
             position: "center",
             icon: "error",
             title: "Descripción invalida, no se permiten caracteres especiales",
-            showConfirmButton: false,
-            timer: 3000
-        })
-    } else if (!ep.test(codigo.value)) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "Código invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
@@ -750,7 +747,7 @@ function btnEditarCategoria(Id_categoria) {
             // id de la fila selecionado index
             document.getElementById("id").value = res.Id_categoria;
             //datos de los campos
-            document.getElementById("codigo").value = res.Cod_categoria;
+            document.getElementById("codigoc").value = res.Cod_categoria;
             document.getElementById("descripcion").value = res.Nom_cate;
             $("#nueva_categoria").modal("show");
         }
@@ -758,7 +755,7 @@ function btnEditarCategoria(Id_categoria) {
 }
 function btnEliminarCategoria(Id_categoria) {
     Swal.fire({
-        title: "¿Eliminar campo?",
+        title: "¿Descartar registro?",
         text: "La Categoria pasara a estar inactivo",
         icon: "warning",
         showCancelButton: true,
@@ -796,7 +793,7 @@ function btnEliminarCategoria(Id_categoria) {
 }
 function btnActivarCategoria(Id_categoria) {
     Swal.fire({
-        title: "¿Activar categoria?",
+        title: "¿Reintegrar categoria?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -833,26 +830,26 @@ function btnActivarCategoria(Id_categoria) {
 }
 
 // Funciones Producto
-
 function frmProducto() {
     document.getElementById("title").innerHTML = "NUEVO PRODUCTO";
     document.getElementById("btnAccion").innerHTML = "REGISTRAR";
     document.getElementById("frmProducto").reset();
-    $("#nuevo_producto").modal("show");
     document.getElementById("id").value = "";
+    $("#nuevo_producto").modal("show");
 }
+
 function registrarProducto(e) {
     e.preventDefault();
-    const codigo = document.getElementById("codigo");
+    const codigop = document.getElementById("codigop");
     const descripcion = document.getElementById("descripcion");
     const precio = document.getElementById("precio");
     const stock = document.getElementById("stock");
-    const color = document.getElementById("color");
     const estilo = document.getElementById("estilo");
-    const categoria = document.getElementById("cate");
+    const color = document.getElementById("color");
+    const categoria = document.getElementById("categoria");
     const talla = document.getElementById("talla");
 
-    if (codigo.value == "" || descripcion.value == "" || precio.value == "" || stock.value == "" || color.value == "" || estilo.value == "" || categoria.value == "" || talla.value == "") {
+    if (codigop.value == "" || descripcion.value == "" || precio.value == "" || stock.value == "") {
         Swal.fire({
             position: "center",
             icon: "error",
@@ -876,11 +873,19 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!ep.test(codigo.value)) {
+    }  else if (isNaN(stock.value)) {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Código invalido, no se permiten caracteres especiales",
+            title: "Cantidad ingresado no es invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }else if (isNaN(precio.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Precio ingresado no es invalido",
             showConfirmButton: false,
             timer: 3000
         })
@@ -941,21 +946,21 @@ function btnEditarProducto(Id_pro) {
             // id de la fila selecionado index
             document.getElementById("id").value = res.Id_pro;
             //datos de los campos
-            document.getElementById("codigo").value = res.Cod_producto;
+            document.getElementById("codigop").value = res.Cod_producto;
             document.getElementById("descripcion").value = res.Detalle_pro;
             document.getElementById("precio").value = res.Precio_pro;
             document.getElementById("stock").value = res.Cantidad_pro;
-            document.getElementById("color").value = res.Color_pro;
-            document.getElementById("estilo").value = res.Estilo_pro;
-            document.getElementById("cate").value = res.Id_cate;
+            document.getElementById("color").value = res.Id_color;
+            document.getElementById("categoria").value = res.Id_cate;
             document.getElementById("talla").value = res.Id_medida;
+            document.getElementById("estilo").value = res.Id_estilo;
             $("#nuevo_producto").modal("show");
         }
     }
 }
 function btnEliminarProducto(Id_pro) {
     Swal.fire({
-        title: "¿Eliminar campo?",
+        title: "¿Descartar registro?",
         text: "El Producto pasara a estar inactivo",
         icon: "warning",
         showCancelButton: true,
@@ -993,7 +998,7 @@ function btnEliminarProducto(Id_pro) {
 }
 function btnActivarProducto(Id_pro) {
     Swal.fire({
-        title: "¿Activar producto?",
+        title: "¿Reintegrar producto?",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
