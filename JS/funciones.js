@@ -245,7 +245,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(telefono.value) || (telefono.value)<900000000 || (telefono.value)>=1000000000) {
+    } else if (isNaN(telefono.value) || (telefono.value) < 900000000 || (telefono.value) >= 1000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -253,8 +253,8 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-       telefono.value= "";
-    } else if (isNaN(dni.value) || (dni.value)<70000000 || (dni.value)>=80000000) {
+        telefono.value = "";
+    } else if (isNaN(dni.value) || (dni.value) < 60000000 || (dni.value) >= 80000000) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -262,7 +262,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        dni.value= "";
+        dni.value = "";
     } else if (!isNaN(nombre.value) || !regex.test(nombre.value)) {
         Swal.fire({
             position: "top",
@@ -271,7 +271,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-       nombre.value= "";
+        nombre.value = "";
     } else if (!isNaN(apellido.value) || !regex.test(apellido.value)) {
         Swal.fire({
             position: "top",
@@ -280,7 +280,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-       apellido.value= "";
+        apellido.value = "";
     } else if (!rc.test(correo.value)) {
         Swal.fire({
             position: "top",
@@ -289,7 +289,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        correo.value= "";
+        correo.value = "";
     } else {
         const url = base_url + "Usuario/registrar";
         const frm = document.getElementById("frmUsuario");
@@ -459,7 +459,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(telefono.value) || (telefono.value)<900000000 || (telefono.value)>=1000000000) {
+    } else if (isNaN(telefono.value) || (telefono.value) < 900000000 || (telefono.value) >= 1000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -467,8 +467,8 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        telefono.value= "";
-    } else if (isNaN(ruc.value) || (ruc.value)<2000000000 || (ruc.value)>=3000000000) {
+        telefono.value = "";
+    } else if (isNaN(ruc.value) || (ruc.value) < 2000000000 || (ruc.value) >= 3000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -476,7 +476,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        ruc.value= "";
+        ruc.value = "";
     } else if (!isNaN(apellido.value) || !regex.test(apellido.value)) {
         Swal.fire({
             position: "top",
@@ -485,7 +485,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        apellido.value= "";
+        apellido.value = "";
     } else if (!isNaN(nombre.value) || !regex.test(nombre.value)) {
         Swal.fire({
             position: "top",
@@ -494,7 +494,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        nombre.value= "";
+        nombre.value = "";
     } else if (!rc.test(correo.value)) {
         Swal.fire({
             position: "top",
@@ -503,7 +503,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        correo.value= "";
+        correo.value = "";
     } else {
         const url = base_url + "Cliente/registrar";
         const frm = document.getElementById("frmCliente");
@@ -867,8 +867,8 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        descripcion.value= "";
-    } else if (isNaN(stock.value) || (stock.value)<1) {
+        descripcion.value = "";
+    } else if (isNaN(stock.value) || (stock.value) < 1) {
         Swal.fire({
             position: "center",
             icon: "warning",
@@ -876,8 +876,8 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        stock.value= "";
-    } else if (isNaN(precio.value) || (precio.value)<1) {
+        stock.value = "";
+    } else if (isNaN(precio.value) || (precio.value) < 1) {
         Swal.fire({
             position: "center",
             icon: "warning",
@@ -885,7 +885,7 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        precio.value= "";
+        precio.value = "";
     } else if (!cc.test(codigop.value)) {
         Swal.fire({
             position: "center",
@@ -894,8 +894,8 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-        codigop.value= "";
-    }   else {
+        codigop.value = "";
+    } else {
         const url = base_url + "Producto/registrar";
         const frm = document.getElementById("frmProducto");
         const http = new XMLHttpRequest();
@@ -1068,7 +1068,7 @@ function buscarCodigo(e) {
                         showConfirmButton: false,
                         timer: 3000
                     })
-                    document.getElementById("codigo_cp").value= "";
+                    document.getElementById("codigo_cp").value = "";
                     document.getElementById("codigo_cp").focus();
 
                 }
@@ -1083,6 +1083,61 @@ function calcularPrecio(e) {
     const precio = document.getElementById("precio").value;
 
     document.getElementById("sub_total").value = precio * cant;
+
+    if (e.which == 13) {
+        if (cant > 0) {
+            const url = base_url + "Compras/ingresar";
+            const frm = document.getElementById("frmCompra");
+            const http = new XMLHttpRequest();
+            http.open("POST", url, true);
+            http.send(new FormData(frm));
+            http.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    const res = JSON.parse(this.responseText);
+                    if (res == "ok") {
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Producto registrado exitosamente!!",
+                            showConfirmButton: false,
+                            timer: 3000
+                        });
+                        frm.reset();
+                        cargarDetalle();
+                    } else {
+                        Swal.fire({
+                            title: "Mensaje",
+                            text: res,
+                            icon: "error"
+                        });
+                    }
+                }
+            }
+
+        }
+    }
+}
+cargarDetalle();
+function cargarDetalle() {
+    const url = base_url + "Compras/listar";
+    const http = new XMLHttpRequest();
+    http.open("GET", url, true);
+    http.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            /*let html= "";
+            res.forEach(row => {
+                html +=`<tr>
+                <td>${row["id"]}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                </tr>`
+            });
+            document.getElementById("tblDetalle").innerHTML=html;*/
+        }
+    }
 }
 
 

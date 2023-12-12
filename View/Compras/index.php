@@ -4,11 +4,11 @@
     <div class="modelo">
         <div class="contenedor">
             <thead>
-                <h1 class="encabezado">Nueva Compra</h1>
+                <h1 class="encabezado">Nueva Venta</h1>
             </thead>
             <div class="card">
                 <div class="card-body">
-                    <form id="frmCompra()">
+                    <form id="frmCompra">
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
@@ -57,7 +57,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    </tbody>
+                    </tbody id="tblDetalle">
                 </table>
                 <div class="row">
                     <div class="col-md-4 ml-auto">
