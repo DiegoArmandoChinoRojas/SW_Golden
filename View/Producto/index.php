@@ -38,7 +38,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="codigop">Código</label>
-                                    <input id="codigop" class="form-control" type="text" name="codigop" placeholder="codigop">
+                                    <input id="codigop" class="form-control" type="text" name="codigop" placeholder="código">
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -25,8 +25,8 @@
                 <div class="modal-header bg-primary bg-gradient">
                     <h5 class="title text-white" id="title">NUEVO CLIENTE</h5>
                 </div>
+                <p class="title" id="title" style="background-color:#15798F; color:#fff; ">Para correos solo @gmail.com | @hotmail.com | @outlook.com</p>
                 <div class="modal-body">
-
                     <form method="post" id="frmCliente">
                         <input type="hidden" id="id" name="id">
                         <div class="form-group">

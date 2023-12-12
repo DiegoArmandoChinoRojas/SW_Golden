@@ -35,8 +35,11 @@ class Producto extends Controller
             <button class="btn btn-success mb-1 btn-sm" type="button" onclick="btnActivarProducto('.$data[$i]['Id_pro'].');"><i class="bi bi-person-arms-up"></i></button>
              </div>';
             }
-            if($data[$i]["Cantidad_pro"] <=50){
-                $data[$i]["Cantidad_pro"] = '<span class="badge bg-danger">Revisar Stock</span>';
+            if($data[$i]["Cantidad_pro"] >=10 and $data[$i]["Cantidad_pro"]<=50){
+                $data[$i]["Cantidad_pro"] = '<span class="badge bg-warning">Revisar Stock</span>';
+            }
+            if($data[$i]["Cantidad_pro"] <10){
+                $data[$i]["Cantidad_pro"] = '<span class="badge bg-danger">Menor a 10</span>';
             }
         }
         echo json_encode($data, JSON_UNESCAPED_UNICODE);

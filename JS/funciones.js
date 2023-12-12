@@ -245,55 +245,43 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(telefono.value)) {
+    } else if (isNaN(telefono.value) || (telefono.value)<900000000 || (telefono.value)>=1000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Teléfono invalido, solo se permiten números",
+            title: "Teléfono invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(dni.value)) {
+       telefono.value= "";
+    } else if (isNaN(dni.value) || (dni.value)<70000000 || (dni.value)>=80000000) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "DNI invalido, solo se permiten números",
+            title: "DNI invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!isNaN(nombre.value)) {
+        dni.value= "";
+    } else if (!isNaN(nombre.value) || !regex.test(nombre.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Nombre invalido, no se permiten números",
+            title: "Nombre invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!isNaN(apellido.value)) {
+       nombre.value= "";
+    } else if (!isNaN(apellido.value) || !regex.test(apellido.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Apellido invalido, no se permiten números",
+            title: "Apellido invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!regex.test(apellido.value)) {
-        Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "Apellido invalido, no se permiten caracteres especiales",
-            showConfirmButton: false,
-            timer: 3000
-        })
-    } else if (!regex.test(nombre.value)) {
-        Swal.fire({
-            position: "top",
-            icon: "error",
-            title: "Nombre invalido, no se permiten caracteres especiales",
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }  else if (!rc.test(correo.value)) {
+       apellido.value= "";
+    } else if (!rc.test(correo.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -301,6 +289,7 @@ function registrarUsuario(e) {
             showConfirmButton: false,
             timer: 3000
         })
+        correo.value= "";
     } else {
         const url = base_url + "Usuario/registrar";
         const frm = document.getElementById("frmUsuario");
@@ -470,15 +459,16 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(telefono.value)) {
+    } else if (isNaN(telefono.value) || (telefono.value)<900000000 || (telefono.value)>=1000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Teléfono invalido, solo debe contener números",
+            title: "Teléfono invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (isNaN(ruc.value)) {
+        telefono.value= "";
+    } else if (isNaN(ruc.value) || (ruc.value)<2000000000 || (ruc.value)>=3000000000) {
         Swal.fire({
             position: "top",
             icon: "error",
@@ -486,22 +476,25 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!regex.test(apellido.value)) {
+        ruc.value= "";
+    } else if (!isNaN(apellido.value) || !regex.test(apellido.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Apellido invalido, no se permiten caracteres especiales",
+            title: "Apellido invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!regex.test(nombre.value)) {
+        apellido.value= "";
+    } else if (!isNaN(nombre.value) || !regex.test(nombre.value)) {
         Swal.fire({
             position: "top",
             icon: "error",
-            title: "Nombre invalido, no se permiten caracteres especiales",
+            title: "Nombre invalido",
             showConfirmButton: false,
             timer: 3000
         })
+        nombre.value= "";
     } else if (!rc.test(correo.value)) {
         Swal.fire({
             position: "top",
@@ -510,6 +503,7 @@ function registrarCliente(e) {
             showConfirmButton: false,
             timer: 3000
         })
+        correo.value= "";
     } else {
         const url = base_url + "Cliente/registrar";
         const frm = document.getElementById("frmCliente");
@@ -690,7 +684,7 @@ function registrarCategoria(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    }else if (!cc.test(codigoc.value)) {
+    } else if (!cc.test(codigoc.value)) {
         Swal.fire({
             position: "center",
             icon: "error",
@@ -865,38 +859,33 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!isNaN(descripcion.value)) {
+    } else if (!isNaN(descripcion.value) || !regex.test(descripcion.value)) {
         Swal.fire({
             position: "center",
             icon: "error",
-            title: "Descripción invalida, no se permiten números",
+            title: "Descripción invalida",
             showConfirmButton: false,
             timer: 3000
         })
-    } else if (!regex.test(descripcion.value)) {
+        descripcion.value= "";
+    } else if (isNaN(stock.value) || (stock.value)<1) {
         Swal.fire({
             position: "center",
-            icon: "error",
-            title: "Descripción invalida, no se permiten caracteres especiales",
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }  else if (isNaN(stock.value)) {
-        Swal.fire({
-            position: "center",
-            icon: "error",
+            icon: "warning",
             title: "Cantidad ingresado no es invalido",
             showConfirmButton: false,
             timer: 3000
         })
-    }else if (isNaN(precio.value)) {
+        stock.value= "";
+    } else if (isNaN(precio.value) || (precio.value)<1) {
         Swal.fire({
             position: "center",
-            icon: "error",
+            icon: "warning",
             title: "Precio ingresado no es invalido",
             showConfirmButton: false,
             timer: 3000
         })
+        precio.value= "";
     } else if (!cc.test(codigop.value)) {
         Swal.fire({
             position: "center",
@@ -905,7 +894,8 @@ function registrarProducto(e) {
             showConfirmButton: false,
             timer: 3000
         })
-    } else {
+        codigop.value= "";
+    }   else {
         const url = base_url + "Producto/registrar";
         const frm = document.getElementById("frmProducto");
         const http = new XMLHttpRequest();
@@ -1049,3 +1039,51 @@ function btnActivarProducto(Id_pro) {
         }
     });
 }
+
+
+// COMPRAS
+
+function buscarCodigo(e) {
+    e.preventDefault();
+    if (e.which == 13) {
+        const cod = document.getElementById("codigo_cp").value;
+        const url = base_url + "Compras/buscarCodigo/" + cod;
+        const http = new XMLHttpRequest();
+        http.open("GET", url, true);
+        http.send();
+        http.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                const res = JSON.parse(this.responseText);
+                if (res) {
+                    document.getElementById("desc_pro").value = res.Detalle_pro;
+                    document.getElementById("stock_c").focus();
+                    document.getElementById("precio").value = res.Precio_pro;
+
+                    document.getElementById("id").value = res.Id_pro;
+                } else {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "El producto no existe",
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    document.getElementById("codigo_cp").value= "";
+                    document.getElementById("codigo_cp").focus();
+
+                }
+            }
+        }
+    }
+}
+
+function calcularPrecio(e) {
+    e.preventDefault();
+    const cant = document.getElementById("stock_c").value;
+    const precio = document.getElementById("precio").value;
+
+    document.getElementById("sub_total").value = precio * cant;
+}
+
+
+

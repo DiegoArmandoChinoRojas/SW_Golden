@@ -26,6 +26,7 @@
                 <a href="<?php echo base_url ?>Cliente"><i class="bi bi-person-fill"></i>Gestión Cliente</a>
                 <a href="<?php echo base_url ?>Categoria"><i class="bi bi-hexagon-half"></i>Categoría</a>
                 <a href="<?php echo base_url ?>Producto"><i class="bi bi-cup-hot-fill"></i>Gestión Producto</a>
+                <a href="<?php echo base_url ?>Compras"><i class="bi bi-cup-hot-fill"></i>Compras</a>
                 <a href=""><i class="bi bi-bar-chart-line-fill"></i>Estadísticas</a>
                 <a href=""><i class="bi bi-bag-fill"></i>Nueva Venta</a>
                 <a href=""><i class="bi bi-card-checklist"></i>Registro de Ventas</a>
