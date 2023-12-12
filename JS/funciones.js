@@ -1,7 +1,7 @@
 let tblUsuario, tblCliente, tblCategoria, tblMedida, tblProducto;
 
 // Parametro de código
-var cc = /^[A-Za-z0-9]+$/;
+var cc = /^[A-Za-z0-9\-]+$/;
 // Parametro de cadena
 var regex = /^[ÁÉÍÓÚáéíóúüÜA-Za-z]+\s([ÁÉÍÓÚáéíóúüÜA-Za-z]+\s?)*$|^[A-Za-zÁÉÍÓÚáéíóúüÜ]+$/;
 // Parametro por dominio
@@ -690,6 +690,14 @@ function registrarCategoria(e) {
             showConfirmButton: false,
             timer: 3000
         })
+    }else if (!cc.test(codigoc.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Codigo invalido, no se permiten caracteres especiales",
+            showConfirmButton: false,
+            timer: 3000
+        })
     } else {
         const url = base_url + "Categoria/registrar";
         const frm = document.getElementById("frmCategoria");
@@ -886,6 +894,14 @@ function registrarProducto(e) {
             position: "center",
             icon: "error",
             title: "Precio ingresado no es invalido",
+            showConfirmButton: false,
+            timer: 3000
+        })
+    } else if (!cc.test(codigop.value)) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Codigo invalido, no se permiten caracteres especiales",
             showConfirmButton: false,
             timer: 3000
         })
